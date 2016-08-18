@@ -12,18 +12,18 @@ use DBD::XML;
 
 print "Test 1 - import from file\n";
 my $dbh = DBI->connect('dbi:XML(RaiseError => 1):');
-print "ad_import file\n";
+# print "ad_import file\n";
 $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'ad_import');
 
-print "prepare\n";
+# print "prepare\n";
 # my $sth = $dbh->prepare( "SELECT * FROM person WHERE name = 'Nigel Horne'");
 # my $sth = $dbh->prepare( "SELECT * FROM person WHERE email = 'njh\@bandsman.co.uk'");
 my $sth = $dbh->prepare("SELECT * FROM person");
 # my $sth = $dbh->prepare( "SELECT name FROM person WHERE email = 'njh\@bandsman.co.uk'");
-print "execute\n";
+# print "execute\n";
 $sth->execute();
 
-print "getting first row\n";
+# print "getting first row\n";
 while (my $href = $sth->fetchrow_hashref()) {
 	my $d = Data::Dumper->new([$href]);
 	print "got data:\n", $d->Dump();
@@ -31,16 +31,15 @@ while (my $href = $sth->fetchrow_hashref()) {
 
 print "Test 2 - import from string\n";
 $dbh = DBI->connect('dbi:XML(RaiseError => 1):');
-print "slurp into string\n";
-print "ad_import string\n";
+# print "ad_import string\n";
 $dbh->func('person2', 'XML', [<DATA>], 'ad_import');
 
 # $sth = $dbh->prepare("SELECT * FROM person2");
 $sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Nigel Horne'");
-print "execute\n";
+# print "execute\n";
 $sth->execute();
 
-print "getting first row\n";
+# print "getting first row\n";
 while (my $href = $sth->fetchrow_hashref()) {
 	my $d = Data::Dumper->new([$href]);
 	print "got data:\n", $d->Dump();

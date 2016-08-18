@@ -56,13 +56,13 @@ $DBD::XML::dr::imp_data_size = 0;
 
 sub disconnect_all
 {
-print "disconnect_all\n";
+# print "disconnect_all\n";
 	shift->{tables} = {};
 }
 
 sub DESTROY
 {
-print "DESTROY\n";
+# print "DESTROY\n";
 	shift->{tables} = {};
 }
 
@@ -120,7 +120,7 @@ sub ad_import
 $dbh->{filename} = $file_name;
 }
 
-package DBD::XML::st;	# ====== STATEMENT ======
+package DBD::XML::st;
 
 use strict;
 use warnings;
@@ -140,7 +140,7 @@ use XML::Twig;
 
 sub open_table ($$$$$)
 {
-	my ( $self, $data, $tname, $createMode, $lockMode ) = @_;
+	my ($self, $data, $tname, $createMode, $lockMode) = @_;
 	my $dbh = $data->{Database};
 
 # print "open_table: ", $dbh->{filename}, "\n";
@@ -149,9 +149,9 @@ sub open_table ($$$$$)
 	my $twig = XML::Twig->new();
 	my $source = $dbh->{filename};
 	if(ref($source) eq 'ARRAY') {
-	$twig->parse(join('', @{$source}));
+		$twig->parse(join('', @{$source}));
 	} else {
-	$twig->parsefile($source);
+		$twig->parsefile($source);
 	}
 
 	my $root = $twig->root;
@@ -167,10 +167,10 @@ sub open_table ($$$$$)
 # print "gchild\n";
 # $leaf->print();
 # print $leaf->name(), ': ', $leaf->field(), "\n";
-		$row{$leaf->name()} = $leaf->field();
+			$row{$leaf->name()} = $leaf->field();
 		}
-	$table{$record->att('id')} = \%row;
-	$rows++;
+		$table{$record->att('id')} = \%row;
+		$rows++;
 	}
 	use Data::Dumper;
 	my $d = Data::Dumper->new([\%table]);
@@ -192,11 +192,11 @@ use Params::Util qw(_HASH0);
 
 sub new
 {
-	my ( $proto, $data, $attr, $flags ) = @_;
+	my ($proto, $data, $attr, $flags) = @_;
 
 # print "D:X:T:new $attr\n";
 	# my @col_names = keys %{$attr};
-	my @col_names = ( 'name', 'email' );
+	my @col_names = ('name', 'email');
 	$attr->{col_names} = \@col_names;
 	$attr->{table_name} = 'person';
 	$attr->{table} = $data;
@@ -210,11 +210,11 @@ sub new
 
 sub fetch_row ($$)
 {
-	my ( $self, $data ) = @_;
+	my ($self, $data) = @_;
 # print "fetch_row\n";
 	my $requested_cols = $data->{sql_stmt}->{NAME};
 # print "requested_cols: ", join(' ', @{$requested_cols}), "\n";
-	my $dbh			= $data->{Database};
+	my $dbh = $data->{Database};
 # print " compare ", $self->{cursor}, '>=', $data->{rows}, "\n";
 	if($self->{cursor} >= $data->{rows}) {
 		return;
@@ -226,7 +226,7 @@ my $d = Data::Dumper->new([$data]);
 # print "njh back: ", $data->{njh}, "\n";
 # $d = Data::Dumper->new([$self]);
 # print "self: ", $d->Dump();
-$d = Data::Dumper->new([$data->{sql_stmt}]);
+# $d = Data::Dumper->new([$data->{sql_stmt}]);
 # print "stmt: ", $d->Dump(), "\n";
 	# my @fields;
 	# foreach my $col(@{$requested_cols}) {
@@ -241,7 +241,7 @@ $d = Data::Dumper->new([$data->{sql_stmt}]);
 
 sub seek ($$$$)
 {
-	my ( $self, $data, $pos, $whence ) = @_;
+	my ($self, $data, $pos, $whence) = @_;
 
 	print "seek $pos $whence, not yet implemented\n";
 }
@@ -265,9 +265,9 @@ sub bootstrap_table_meta
 	$self->SUPER::bootstrap_table_meta ($dbh, $meta, $table, @other);
 # print "bootstrap_table_meta $table\n";
 
-	exists  $meta->{filename}		or $meta->{filename}		= $dbh->{filename};
+	exists $meta->{filename} or $meta->{filename} = $dbh->{filename};
 	$meta->{table} = 'person';
-	my @col_names = ( 'name', 'email' );
+	my @col_names = ('name', 'email');
 	$meta->{col_names} = \@col_names;
 
 	defined ($meta->{sql_data_source}) or
@@ -287,6 +287,6 @@ sub get_table_meta ($$$$;$)
 	return unless $table;
 
 	return ($table, $meta);
-} # get_table_meta
+}
 
 1;
