@@ -11,32 +11,29 @@ use base qw(DBI::DBD::SqlEngine);
 # require SQL::Eval;
 use Data::Dumper;
 
-use vars qw($VERSION $err $errstr $sqlstate $drh $methods_already_installed);
+use vars qw($VERSION $drh $methods_already_installed);
 
 $VERSION = '0.01';
-our $err = 0;
-our $errstr = '';
-our $sqlstate = '';
 our $drh = undef;
 
 sub driver
 {
-	my $class = shift;
-	my $attr = shift;
-
 	return $drh if $drh;
 
+	my ($class, $attr) = @_;
+
+	# $drh = DBI::_new_drh("$class::dr", {
 	$drh = $class->SUPER::driver({
 		'Name' => 'XML',
 		'Version' => $VERSION,
-		'Err' => \$DBD::XML::err,
-		'Errstr' => \$DBD::XML::errstr,
-		'State' => \$DBD::XML::sqlstate,
 		'Attribution' => 'DBD::XML by Nigel Horne',
 	});
 
-	unless($methods_already_installed++) {
-		DBD::XML::db->install_method('ad_import');
+	if($drh) {
+		unless($methods_already_installed++) {
+			DBI->setup_driver(__PACKAGE__);
+			DBD::XML::db->install_method('ad_import');
+		}
 	}
 
 	return $drh;
@@ -50,9 +47,6 @@ sub CLONE
 package DBD::XML::dr;
 
 use vars qw($imp_data_size);
-
-$DBD::XML::dr::imp_data_size = 0;
-@DBD::XML::dr::ISA = qw(DBI::DBD::SqlEngine::dr);
 
 sub disconnect_all
 {
@@ -76,35 +70,6 @@ require File::Spec;
 $DBD::XML::db::imp_data_size = 0;
 @DBD::XML::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
-sub init_default_attributes
-{
-	my $dbh = shift;
-
-	$dbh->SUPER::init_default_attributes();
-
-	$dbh->{f_dir} = Cwd::abs_path( File::Spec->curdir() );
-
-	return $dbh;
-}
-
-sub set_versions
-{
-# print "set_versions\n";
-	my $this = $_[0];
-	$this->{ad_version} = $DBD::XML::VERSION;
-	return $this->SUPER::set_versions();
-}
-
-sub disconnect
-{
-# print "disconnect\n";
-	my $dbh = $_[0];
-	$dbh->SUPER::disconnect();
-	$dbh->{ad_tables} = {};
-	$dbh->STORE( 'Active', 0 );
-	return 1;
-}
-
 sub ad_import
 {
 	my $dbh = shift;
@@ -117,7 +82,7 @@ sub ad_import
 	if(ref($file_name)) {
 	}
 # print ">>>>>>>>$file_name\n";
-$dbh->{filename} = $file_name;
+	$dbh->{filename} = $file_name;
 }
 
 package DBD::XML::st;
@@ -157,6 +122,7 @@ sub open_table ($$$$$)
 	my $root = $twig->root;
 	my %table;
 	my $rows;
+	my %col_names;
 	foreach my $record($root->children()) {
 		my %row;
 # print "child\n";
@@ -168,6 +134,7 @@ sub open_table ($$$$$)
 # $leaf->print();
 # print $leaf->name(), ': ', $leaf->field(), "\n";
 			$row{$leaf->name()} = $leaf->field();
+			$col_names{$leaf->name()} = 1;
 		}
 		$table{$record->att('id')} = \%row;
 		$rows++;
@@ -177,6 +144,11 @@ sub open_table ($$$$$)
 # print "open_table has read:\n", $d->Dump();
 
 	$data->{'rows'} = $rows;
+
+	$table{'table_name'} = $tname;
+	my @col_names = sort keys %col_names;
+# print ">>>>>>>>", @col_names, "\n";
+	$table{'col_names'} = \@col_names;
 
 	return DBD::XML::Table->new($data, \%table);
 }
@@ -196,14 +168,16 @@ sub new
 
 # print "D:X:T:new $attr\n";
 	# my @col_names = keys %{$attr};
-	my @col_names = ('name', 'email');
-	$attr->{col_names} = \@col_names;
-	$attr->{table_name} = 'person';
+	# my @col_names = ('name', 'email');
+	# $attr->{col_names} = \@col_names;
+# print ">>>>>>>>", @{$attr->{col_names}}, "\n";
 	$attr->{table} = $data;
 	$attr->{readonly} = 1;
 	$attr->{cursor} = 0;
-	use Data::Dumper;
-	my $d = Data::Dumper->new([$attr]);
+# use Data::Dumper;
+# my $d = Data::Dumper->new([$attr]);
+# print "attr: ", $d->Dump();
+# $d = Data::Dumper->new([$data]);
 # print "data: ", $d->Dump();
 	return $proto->SUPER::new($data, $attr, $flags);
 }
@@ -220,8 +194,8 @@ sub fetch_row ($$)
 		return;
 	}
 	$self->{cursor}++;
-use Data::Dumper;
-my $d = Data::Dumper->new([$data]);
+# use Data::Dumper;
+# my $d = Data::Dumper->new([$data]);
 # print "data: ", $d->Dump();
 # print "njh back: ", $data->{njh}, "\n";
 # $d = Data::Dumper->new([$self]);
@@ -232,8 +206,12 @@ my $d = Data::Dumper->new([$data]);
 	# foreach my $col(@{$requested_cols}) {
 		# push @fields, $self->{$self->{'cursor'}}->{$col};
 	# }
-	my @fields = values %{$self->{$self->{'cursor'}}};
-# $d = Data::Dumper->new([\@fields]);
+	# my @fields = values %{$self->{$self->{'cursor'}}};
+	my @fields;
+	foreach my $col(sort keys %{$self->{'1'}}) {
+		push @fields, $self->{$self->{'cursor'}}->{$col};
+	}
+# my $d = Data::Dumper->new([\@fields]);
 # print "return: ", $d->Dump(), "\n";
 	$self->{row} = \@fields;
 	return $self->{row};
@@ -266,12 +244,19 @@ sub bootstrap_table_meta
 # print "bootstrap_table_meta $table\n";
 
 	exists $meta->{filename} or $meta->{filename} = $dbh->{filename};
-	$meta->{table} = 'person';
-	my @col_names = ('name', 'email');
+# use Data::Dumper;
+my $d = Data::Dumper->new([$meta]);
+# print "meta: ", $d->Dump();
+# my $d = Data::Dumper->new([$table]);
+# print "table: ", $d->Dump();
+# $d = Data::Dumper->new([$dbh]);
+# print "dbh: ", $d->Dump();
+	$meta->{table} = 'something must go here - what though?';
+	my @col_names = ('email', 'name');	# FIXME
 	$meta->{col_names} = \@col_names;
 
 	defined ($meta->{sql_data_source}) or
-	$meta->{sql_data_source} = 'DBD::XML::Table';
+		$meta->{sql_data_source} = __PACKAGE__;
 }
 
 sub get_table_meta ($$$$;$)
