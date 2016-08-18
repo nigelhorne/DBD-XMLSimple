@@ -1,16 +1,24 @@
 #!/usr/bin/env perl
 
-use lib '../lib';	# TODO: Use findbin
+use warnings;
+use strict;
+
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
 use DBD::XML;
 use Data::Dumper;
 
 my $dbh = DBI->connect('dbi:XML(RaiseError=>1):');
 print "ad_import\n";
-$dbh->func('person', 'XML', '../data/person.xml', 'ad_import');
+$dbh->func('person', 'XML', "$Bin/../data/person.xml", 'ad_import');
 
 print "prepare\n";
 # my $sth = $dbh->prepare( "SELECT * FROM person WHERE name = 'Nigel Horne'");
 my $sth = $dbh->prepare( "SELECT * FROM person WHERE email = 'njh\@bandsman.co.uk'");
+# my $sth = $dbh->prepare("SELECT * FROM person");
+
+# THIS one doesn't work
+# my $sth = $dbh->prepare( "SELECT name FROM person WHERE email = 'njh\@bandsman.co.uk'");
 print "execute\n";
 $sth->execute();
 

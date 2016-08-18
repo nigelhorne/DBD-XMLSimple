@@ -34,7 +34,7 @@ sub driver
 		'Attribution' => 'DBD::XML by Nigel Horne',
 	});
 
-	unless ( $methods_already_installed++ ) {
+	unless($methods_already_installed++) {
 		DBD::XML::db->install_method('ad_import');
 	}
 
@@ -55,13 +55,13 @@ $DBD::XML::dr::imp_data_size = 0;
 
 sub disconnect_all
 {
-	warn "disconnect_all\n";
+print "disconnect_all\n";
 	shift->{tables} = {};
 }
 
 sub DESTROY
 {
-	warn "DESTROY\n";
+print "DESTROY\n";
 	shift->{tables} = {};
 }
 
@@ -119,67 +119,6 @@ sub ad_import
 $dbh->{filename} = $file_name;
 }
 
-sub validate_STORE_attr
-{
-print "validate_STORE_attr\n";
-    my ( $dbh, $attrib, $value ) = @_;
-
-    if ( $attrib eq "f_dir" )
-    {
-        -d $value
-          or return $dbh->set_err( $DBI::stderr, "No such directory '$value'" );
-        File::Spec->file_name_is_absolute($value)
-          or $value = Cwd::abs_path($value);
-    }
-
-    return $dbh->SUPER::validate_STORE_attr( $attrib, $value );
-}
-
-sub get_avail_tables
-{
-print "get_avail_tables\n";
-    my $dbh = $_[0];
-
-    my @tables = $dbh->SUPER::get_avail_tables();
-
-    my $catalog = $dbh->func( '', 'ad_get_catalog' );
-    if ($catalog)
-    {
-        for ( keys %{$catalog} )
-        {
-            push( @tables, [ undef, undef, $_, "TABLE", "XML" ] );
-        }
-    }
-
-    return @tables;
-}
-
-sub DESTROY
-{
-warn "destroy\n";
-    my $dbh = shift;
-    $dbh->{ad_tables} = {};
-    $dbh->STORE( 'Active', 0 );
-}
-
-sub ad_get_catalog
-{
-print "ad_get_catalog\n";
-    my $self  = shift;
-    my $tname = shift;
-    #################################################################
-    # Patch from Wes Hardaker
-    #################################################################
-    if ($tname)
-    {
-        return $self->{ad_tables}->{$tname}
-          if ( $self->{ad_tables}->{$tname} );
-        return $self->{ad_tables}->{__default};
-    }
-    #################################################################
-    return $self->{ad_tables};
-}
-
 package DBD::XML::st;    # ====== STATEMENT ======
 
 use strict;
@@ -189,10 +128,6 @@ use vars qw($imp_data_size);
 
 $DBD::XML::st::imp_data_size = 0;
 @DBD::XML::st::ISA           = qw(DBI::DBD::SqlEngine::st);
-
-# sub DESTROY ($) { undef; }
-
-# sub finish ($) {}
 
 package DBD::XML::Statement;
 
@@ -207,7 +142,7 @@ sub open_table ($$$$$)
     my ( $self, $data, $tname, $createMode, $lockMode ) = @_;
     my $dbh = $data->{Database};
 
-print "open_table: ", $dbh->{filename}, "\n";
+# print "open_table: ", $dbh->{filename}, "\n";
 # print ">>>>>>>>>>$data, $tname\n";
 
     my $twig = XML::Twig->new();
@@ -233,55 +168,11 @@ print "open_table: ", $dbh->{filename}, "\n";
     }
 	use Data::Dumper;
 	my $d = Data::Dumper->new([\%table]);
-# print $d->Dump();
+# print "open_table has read:\n", $d->Dump();
 
 	$data->{'rows'} = $rows;
 
     return DBD::XML::Table->new($data, \%table);
-
-    if(0) {
-    # use Data::Dumper;
-    # my $d = Data::Dumper->new([$data]);
-    # print $d->Dump();
-
-    my $catalog = $dbh->func( $tname, 'ad_get_catalog' );
-    if ( !$catalog )
-    {
-        $dbh->func( [ [ $tname, 'Base', '' ] ], 'ad_catalog' );
-        $catalog    = $dbh->func( $tname, 'ad_get_catalog' );
-        $createMode = 'o';
-        $lockMode   = undef;
-    }
-    my $format = $catalog->{format};
-    my $file   = $catalog->{file_name};
-    my $ad     = $catalog->{ad}
-      #################################################################
-      # Patch from Wes Hardaker
-      #################################################################
-      #    || XML::adTable( $format, $file, $createMode, $lockMode,
-      #                         $catalog );
-      || XML::adTable( $format, $file, $createMode, $lockMode, $catalog, $tname );
-    #print join("\n", $format,@$file,$createMode), "\n";
-    #use Data::Dumper; print Dumper $catalog;
-    #################################################################
-    my $table = $ad->prep_dbd_table( $tname, $createMode );
-    my $cols = $table->{col_names};
-    if ( $cols and ref $cols ne 'ARRAY' )
-    {
-        #$dbh->DBI::set_err(99, "\n  $cols\n ");
-        print "\n  $cols\n ";
-        exit;
-    }
-    if (    'Base XML HTMLtable' =~ /$catalog->{format}/
-         or $file =~ /http:|ftp:/
-         or ref($file) eq 'ARRAY' )
-    {
-        $ad->seek_first_record();
-        $dbh->func( $tname, 'ad', $ad, 'ad_mod_catalog' );
-    }
-    return DBD::XML::Table->new($table);
-    }
-
 }
 
 package DBD::XML::Table;
@@ -297,7 +188,7 @@ sub new
 {
     my ( $proto, $data, $attr, $flags ) = @_;
 
-    print "D:X:T:new $attr\n";
+# print "D:X:T:new $attr\n";
     # my @col_names = keys %{$attr};
     my @col_names = ( 'name', 'email' );
     $attr->{col_names} = \@col_names;
@@ -311,22 +202,13 @@ sub new
     return $proto->SUPER::new($data, $attr, $flags);
 }
 
-sub trim
-{
-# print "trim\n";
-    my $x = $_[0];
-    $x =~ s/^\s+//;
-    $x =~ s/\s+$//;
-    return $x;
-}
-
 sub fetch_row ($$)
 {
     my ( $self, $data ) = @_;
 # print "fetch_row\n";
     my $requested_cols = $data->{sql_stmt}->{NAME};
     my $dbh            = $data->{Database};
-print " compare ", $self->{cursor}, '>=', $data->{rows}, "\n";
+# print " compare ", $self->{cursor}, '>=', $data->{rows}, "\n";
     if($self->{cursor} >= $data->{rows}) {
     	return;
     }
@@ -335,7 +217,7 @@ use Data::Dumper;
 my $d = Data::Dumper->new([$data]);
 # print "data: ", $d->Dump();
 # print "njh back: ", $data->{njh}, "\n";
-$d = Data::Dumper->new([$self]);
+# $d = Data::Dumper->new([$self]);
 # print "self " , @{$requested_cols}, ": ", $d->Dump();
 $d = Data::Dumper->new([$data->{sql_stmt}]);
 # print "stmt: ", $d->Dump(), "\n";
@@ -347,51 +229,17 @@ $d = Data::Dumper->new([$data->{sql_stmt}]);
     # {
         # @$fields = map( $_ = &trim($_), @$fields );
     # }
-$d = Data::Dumper->new([@fields]);
+# $d = Data::Dumper->new([@fields]);
 # print "return: ", $d->Dump(), "\n";
     $self->{row} = \@fields;
     return $self->{row};
 }
 
-sub push_names ($$$)
-{
-print "push_names\n";
-    my ( $self, $data, $names ) = @_;
-    #print @$names;
-    $self->{ad}->push_names($names);
-}
-
-sub push_row ($$$)
-{
-print "push_row\n";
-    my ( $self, $data, $fields ) = @_;
-    my $requested_cols = [];
-    my @rc             = $data->{sql_stmt}->columns();
-    push @$requested_cols, $_->{column} for @rc;
-    unshift @$fields, $requested_cols;
-    $self->{ad}->push_row(@$fields);
-    1;
-}
-
 sub seek ($$$$)
 {
-print "seek\n";
-    my ( $self, $data, $pos, $whence ) = @_;
-    $self->{ad}->seek( $pos, $whence );
-}
+	my ( $self, $data, $pos, $whence ) = @_;
 
-sub drop ($$)
-{
-print "drop\n";
-    my ( $self, $data ) = @_;
-    return $self->{ad}->drop();
-}
-
-sub truncate ($$)
-{
-print "truncate\n";
-    my ( $self, $data ) = @_;
-    $self->{ad}->truncate($data);
+	print "seek $pos $whence, not yet implemented\n";
 }
 
 sub complete_table_name($$$$)
@@ -405,7 +253,6 @@ sub open_data
 {
     my ($className, $meta, $attrs, $flags) = @_;
 }
-
 
 sub bootstrap_table_meta
 {
@@ -421,7 +268,7 @@ sub bootstrap_table_meta
 
     defined ($meta->{sql_data_source}) or
 	$meta->{sql_data_source} = 'DBD::XML::Table';
-    } # bootstrap_table_meta
+}
 
 sub get_table_meta ($$$$;$)
 {
@@ -437,16 +284,5 @@ sub get_table_meta ($$$$;$)
 
     return ($table, $meta);
 } # get_table_meta
-
-sub DESTROY
-{
-print "DESTROY\n";
-    # wierd: this is needed to close file handle ???
-    my $self = shift;
-    #print "CLOSING" if $self->{ad}->{storage}->{fh};
-    my $fh = $self->{ad}->{storage}->{fh} or return;
-    $self->{ad}->DESTROY;
-    undef $self->{ad}->{storage}->{fh};
-}
 
 1;
