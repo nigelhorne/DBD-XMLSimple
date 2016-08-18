@@ -3,6 +3,7 @@ package DBD::XML;
 # GPL2.  Don't use this yet, it's a WIP
 # Change ad_import to xml_import once it's been registered
 # Re-uses code from existing DBD Drives, especially DBD::AnyData
+# Nigel Horne: njh@bandsman.co.uk
 
 require DBI::DBD::SqlEngine;
 use base qw(DBI::DBD::SqlEngine);
@@ -103,14 +104,14 @@ sub disconnect
 	$dbh->STORE( 'Active', 0 );
 	return 1;
 }
- 
+
 sub ad_import
 {
 	my $dbh = shift;
 	my($table_name, $format, $file_name, $flags) = @_;
 
 	die if($format ne 'XML');
-	
+
 # print ">>>>>>ad_import\n";
 
 	if(ref($file_name)) {
@@ -119,7 +120,7 @@ sub ad_import
 $dbh->{filename} = $file_name;
 }
 
-package DBD::XML::st;    # ====== STATEMENT ======
+package DBD::XML::st;	# ====== STATEMENT ======
 
 use strict;
 use warnings;
@@ -127,7 +128,7 @@ use warnings;
 use vars qw($imp_data_size);
 
 $DBD::XML::st::imp_data_size = 0;
-@DBD::XML::st::ISA           = qw(DBI::DBD::SqlEngine::st);
+@DBD::XML::st::ISA = qw(DBI::DBD::SqlEngine::st);
 
 package DBD::XML::Statement;
 
@@ -139,40 +140,45 @@ use XML::Twig;
 
 sub open_table ($$$$$)
 {
-    my ( $self, $data, $tname, $createMode, $lockMode ) = @_;
-    my $dbh = $data->{Database};
+	my ( $self, $data, $tname, $createMode, $lockMode ) = @_;
+	my $dbh = $data->{Database};
 
 # print "open_table: ", $dbh->{filename}, "\n";
 # print ">>>>>>>>>>$data, $tname\n";
 
-    my $twig = XML::Twig->new();
-    $twig->parsefile($dbh->{filename});
+	my $twig = XML::Twig->new();
+	my $source = $dbh->{filename};
+	if(ref($source) eq 'ARRAY') {
+	$twig->parse(join('', @{$source}));
+	} else {
+	$twig->parsefile($source);
+	}
 
-    my $root = $twig->root;
-    my %table;
-    my $rows;
-    foreach my $record($root->children()) {
-    	my %row;
+	my $root = $twig->root;
+	my %table;
+	my $rows;
+	foreach my $record($root->children()) {
+		my %row;
 # print "child\n";
 # print $record->name(), ': ', $record->field(), "\n";
 # print "id is: ", $record->att('id'), "\n";
 # $record->print();
-	    foreach my $leaf($record->children) {
+		foreach my $leaf($record->children) {
 # print "gchild\n";
 # $leaf->print();
 # print $leaf->name(), ': ', $leaf->field(), "\n";
-	    $row{$leaf->name()} = $leaf->field();
-	    }
+		$row{$leaf->name()} = $leaf->field();
+		}
 	$table{$record->att('id')} = \%row;
 	$rows++;
-    }
+	}
 	use Data::Dumper;
 	my $d = Data::Dumper->new([\%table]);
 # print "open_table has read:\n", $d->Dump();
 
 	$data->{'rows'} = $rows;
 
-    return DBD::XML::Table->new($data, \%table);
+	return DBD::XML::Table->new($data, \%table);
 }
 
 package DBD::XML::Table;
@@ -186,34 +192,34 @@ use Params::Util qw(_HASH0);
 
 sub new
 {
-    my ( $proto, $data, $attr, $flags ) = @_;
+	my ( $proto, $data, $attr, $flags ) = @_;
 
 # print "D:X:T:new $attr\n";
-    # my @col_names = keys %{$attr};
-    my @col_names = ( 'name', 'email' );
-    $attr->{col_names} = \@col_names;
-    $attr->{table_name} = 'person';
-    $attr->{table} = $data;
-    $attr->{readonly} = 1;
-    $attr->{cursor} = 0;
-    use Data::Dumper;
-    my $d = Data::Dumper->new([$attr]);
+	# my @col_names = keys %{$attr};
+	my @col_names = ( 'name', 'email' );
+	$attr->{col_names} = \@col_names;
+	$attr->{table_name} = 'person';
+	$attr->{table} = $data;
+	$attr->{readonly} = 1;
+	$attr->{cursor} = 0;
+	use Data::Dumper;
+	my $d = Data::Dumper->new([$attr]);
 # print "data: ", $d->Dump();
-    return $proto->SUPER::new($data, $attr, $flags);
+	return $proto->SUPER::new($data, $attr, $flags);
 }
 
 sub fetch_row ($$)
 {
-    my ( $self, $data ) = @_;
+	my ( $self, $data ) = @_;
 # print "fetch_row\n";
-    my $requested_cols = $data->{sql_stmt}->{NAME};
+	my $requested_cols = $data->{sql_stmt}->{NAME};
 # print "requested_cols: ", join(' ', @{$requested_cols}), "\n";
-    my $dbh            = $data->{Database};
+	my $dbh			= $data->{Database};
 # print " compare ", $self->{cursor}, '>=', $data->{rows}, "\n";
-    if($self->{cursor} >= $data->{rows}) {
-    	return;
-    }
-    $self->{cursor}++;
+	if($self->{cursor} >= $data->{rows}) {
+		return;
+	}
+	$self->{cursor}++;
 use Data::Dumper;
 my $d = Data::Dumper->new([$data]);
 # print "data: ", $d->Dump();
@@ -249,38 +255,38 @@ sub complete_table_name($$$$)
 
 sub open_data
 {
-    my ($className, $meta, $attrs, $flags) = @_;
+	my ($className, $meta, $attrs, $flags) = @_;
 }
 
 sub bootstrap_table_meta
 {
-    my ($self, $dbh, $meta, $table, @other) = @_;
+	my ($self, $dbh, $meta, $table, @other) = @_;
 
-    $self->SUPER::bootstrap_table_meta ($dbh, $meta, $table, @other);
+	$self->SUPER::bootstrap_table_meta ($dbh, $meta, $table, @other);
 # print "bootstrap_table_meta $table\n";
 
-    exists  $meta->{filename}        or $meta->{filename}        = $dbh->{filename};
-    $meta->{table} = 'person';
-    my @col_names = ( 'name', 'email' );
-    $meta->{col_names} = \@col_names;
+	exists  $meta->{filename}		or $meta->{filename}		= $dbh->{filename};
+	$meta->{table} = 'person';
+	my @col_names = ( 'name', 'email' );
+	$meta->{col_names} = \@col_names;
 
-    defined ($meta->{sql_data_source}) or
+	defined ($meta->{sql_data_source}) or
 	$meta->{sql_data_source} = 'DBD::XML::Table';
 }
 
 sub get_table_meta ($$$$;$)
 {
-    my ($self, $dbh, $table, $file_is_table, $respect_case) = @_;
+	my ($self, $dbh, $table, $file_is_table, $respect_case) = @_;
 
-    my $meta = $self->SUPER::get_table_meta ($dbh, $table, $respect_case, $file_is_table);
-    $table = $meta->{table};
-    use Data::Dumper;
-    my $d = Data::Dumper->new([$meta]);
+	my $meta = $self->SUPER::get_table_meta ($dbh, $table, $respect_case, $file_is_table);
+	$table = $meta->{table};
+	use Data::Dumper;
+	my $d = Data::Dumper->new([$meta]);
 # print "meta: ", $d->Dump();
 # print "get_meta_table $table $meta\n";
-    return unless $table;
+	return unless $table;
 
-    return ($table, $meta);
+	return ($table, $meta);
 } # get_table_meta
 
 1;
