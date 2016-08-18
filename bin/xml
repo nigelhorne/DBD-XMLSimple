@@ -2,6 +2,7 @@
 
 use warnings;
 use strict;
+use autodie qw(:all);
 
 use FindBin qw($Bin);
 use lib "$Bin/../lib";
