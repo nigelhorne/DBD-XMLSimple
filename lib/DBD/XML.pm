@@ -207,6 +207,7 @@ sub fetch_row ($$)
     my ( $self, $data ) = @_;
 # print "fetch_row\n";
     my $requested_cols = $data->{sql_stmt}->{NAME};
+# print "requested_cols: ", join(' ', @{$requested_cols}), "\n";
     my $dbh            = $data->{Database};
 # print " compare ", $self->{cursor}, '>=', $data->{rows}, "\n";
     if($self->{cursor} >= $data->{rows}) {
@@ -218,21 +219,18 @@ my $d = Data::Dumper->new([$data]);
 # print "data: ", $d->Dump();
 # print "njh back: ", $data->{njh}, "\n";
 # $d = Data::Dumper->new([$self]);
-# print "self " , @{$requested_cols}, ": ", $d->Dump();
+# print "self: ", $d->Dump();
 $d = Data::Dumper->new([$data->{sql_stmt}]);
 # print "stmt: ", $d->Dump(), "\n";
-	my @fields;
-	foreach my $col(@{$requested_cols}) {
-		push @fields, $self->{$self->{'cursor'}}->{$col};
-	}
-    # if ( $dbh->{ChopBlanks} )
-    # {
-        # @$fields = map( $_ = &trim($_), @$fields );
-    # }
-# $d = Data::Dumper->new([@fields]);
+	# my @fields;
+	# foreach my $col(@{$requested_cols}) {
+		# push @fields, $self->{$self->{'cursor'}}->{$col};
+	# }
+	my @fields = values %{$self->{$self->{'cursor'}}};
+# $d = Data::Dumper->new([\@fields]);
 # print "return: ", $d->Dump(), "\n";
-    $self->{row} = \@fields;
-    return $self->{row};
+	$self->{row} = \@fields;
+	return $self->{row};
 }
 
 sub seek ($$$$)
