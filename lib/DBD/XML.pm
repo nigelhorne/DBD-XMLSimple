@@ -189,6 +189,8 @@ sub complete_table_name($$$$)
 sub open_data
 {
 	my($className, $meta, $attrs, $flags) = @_;
+	my @col_names = ('email', 'name');	# FIXME
+	$meta->{col_names} = \@col_names;
 }
 
 sub bootstrap_table_meta
@@ -199,9 +201,6 @@ sub bootstrap_table_meta
 
 	$meta->{filename} ||= $dbh->{filename};
 	$meta->{table} = $table;
-
-	my @col_names = ('email', 'name');	# FIXME
-	$meta->{col_names} = \@col_names;
 
 	$meta->{sql_data_source} ||= __PACKAGE__;
 }
