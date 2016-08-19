@@ -200,7 +200,7 @@ sub bootstrap_table_meta
 	$meta->{filename} ||= $dbh->{filename};
 	$meta->{table} = $table;
 
-	my @col_names = ('email', 'name');	# FIXME - this needs to be moved from this routine
+	my @col_names = ('email', 'name');	# FIXME
 	$meta->{col_names} = \@col_names;
 
 	$meta->{sql_data_source} ||= __PACKAGE__;

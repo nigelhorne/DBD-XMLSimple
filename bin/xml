@@ -12,6 +12,8 @@ use DBD::XML;
 
 print "Test 1 - import from file\n";
 my $dbh = DBI->connect('dbi:XML(RaiseError => 1):');
+
+# To be replaces with xml_import one the driver has been registered
 # print "ad_import file\n";
 $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'ad_import');
 
