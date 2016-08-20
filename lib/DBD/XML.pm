@@ -151,7 +151,10 @@ sub new
 	$attr->{readonly} = 1;
 	$attr->{cursor} = 0;
 
-	return $class->SUPER::new($data, $attr, $flags);
+	my $rc = $class->SUPER::new($data, $attr, $flags);
+
+	$rc->{col_names} = $attr->{col_names};
+	return $rc;
 }
 
 sub fetch_row($$)
@@ -189,8 +192,6 @@ sub complete_table_name($$$$)
 sub open_data
 {
 	my($className, $meta, $attrs, $flags) = @_;
-	my @col_names = ('email', 'name');	# FIXME
-	$meta->{col_names} = \@col_names;
 }
 
 sub bootstrap_table_meta
