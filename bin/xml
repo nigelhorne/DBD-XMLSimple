@@ -24,12 +24,7 @@ my $sth = $dbh->prepare("SELECT * FROM person");
 # my $sth = $dbh->prepare( "SELECT name FROM person WHERE email = 'njh\@bandsman.co.uk'");
 # print "execute\n";
 $sth->execute();
-
-# print "getting first row\n";
-while (my $href = $sth->fetchrow_hashref()) {
-	my $d = Data::Dumper->new([$href]);
-	print "got data:\n", $d->Dump();
-}
+$sth->dump_results();
 
 print "Test 2 - import from string\n";
 $dbh = DBI->connect('dbi:XML(RaiseError => 1):');
@@ -40,12 +35,7 @@ $dbh->func('person2', 'XML', [<DATA>], 'ad_import');
 $sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Nigel Horne'");
 # print "execute\n";
 $sth->execute();
-
-# print "getting first row\n";
-while (my $href = $sth->fetchrow_hashref()) {
-	my $d = Data::Dumper->new([$href]);
-	print "got data:\n", $d->Dump();
-}
+$sth->dump_results();
 
 __DATA__
 <?xml version="1.0" encoding="US-ASCII"?>
