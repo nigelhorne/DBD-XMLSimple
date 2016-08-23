@@ -1,5 +1,19 @@
 package DBD::XMLSimple;
 
+=head1 NAME
+
+DBD::XMLSimple - Access XML data via the DBI interface
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+=head1 SYNOPSIS
+
+=cut
+
 # GPL2.  Don't use this yet, it's a WIP
 # Change ad_import to xml_import once it's been registered
 # Re-uses code from existing DBD Drives, especially DBD::AnyData
@@ -13,7 +27,7 @@ use Data::Dumper;
 
 use vars qw($VERSION $drh $methods_already_installed);
 
-$VERSION = '0.01';
+our $VERSION = '0.01';
 our $drh = undef;
 
 sub driver

@@ -1,0 +1,9 @@
+Changes
+MANIFEST
+Makefile.PL
+LICENCE
+README.md
+ignore.txt
+lib/DBD/XMLSimple.pm
+t/00-load.t
+META.yml                                 Module meta-data (added by MakeMaker)
