@@ -23,7 +23,6 @@ require DBI::DBD::SqlEngine;
 use base qw(DBI::DBD::SqlEngine);
 # require SQL::Statement;
 # require SQL::Eval;
-use Data::Dumper;
 
 use vars qw($VERSION $drh $methods_already_installed);
 
@@ -136,8 +135,6 @@ sub open_table($$$$$)
 		$table{data}->{$record->att('id')} = \%row;
 		$rows++;
 	}
-	use Data::Dumper;
-	my $d = Data::Dumper->new([\%table]);
 
 	$data->{'rows'} = $rows;
 
