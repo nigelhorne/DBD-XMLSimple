@@ -15,14 +15,12 @@ Version 0.01
 =cut
 
 # GPL2.  Don't use this yet, it's a WIP
-# Change ad_import to xml_import once it's been registered
-# Re-uses code from existing DBD Drives, especially DBD::AnyData
+# Change x_import to xmls_import once it's been registered
+# Re-uses code from existing DBD Drivers, especially DBD::AnyData
 # Nigel Horne: njh@bandsman.co.uk
 
 require DBI::DBD::SqlEngine;
 use base qw(DBI::DBD::SqlEngine);
-# require SQL::Statement;
-# require SQL::Eval;
 
 use vars qw($VERSION $drh $methods_already_installed);
 
@@ -35,6 +33,8 @@ sub driver
 
 	my($class, $attr) = @_;
 
+	# $class .= '::dr';
+	# $drh = DBI::_new_drh($class, {
 	# $drh = DBI::_new_drh("$class::dr", {
 	$drh = $class->SUPER::driver({
 		'Name' => 'XML',
@@ -45,7 +45,7 @@ sub driver
 	if($drh) {
 		unless($methods_already_installed++) {
 			DBI->setup_driver(__PACKAGE__);
-			DBD::XMLSimple::db->install_method('ad_import');
+			DBD::XMLSimple::db->install_method('x_import');
 		}
 	}
 
@@ -81,7 +81,7 @@ require File::Spec;
 $DBD::XMLSimple::db::imp_data_size = 0;
 @DBD::XMLSimple::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
-sub ad_import
+sub x_import
 {
 	my $dbh = shift;
 	my($table_name, $format, $file_name, $flags) = @_;
@@ -209,7 +209,6 @@ sub bootstrap_table_meta
 
 	$class->SUPER::bootstrap_table_meta($dbh, $meta, $table, @other);
 
-	$meta->{filename} ||= $dbh->{filename};
 	$meta->{table} = $table;
 
 	$meta->{sql_data_source} ||= __PACKAGE__;
@@ -220,6 +219,7 @@ sub get_table_meta($$$$;$)
 	my($class, $dbh, $table, $file_is_table, $respect_case) = @_;
 
 	my $meta = $class->SUPER::get_table_meta($dbh, $table, $respect_case, $file_is_table);
+
 	$table = $meta->{table};
 
 	return unless $table;
