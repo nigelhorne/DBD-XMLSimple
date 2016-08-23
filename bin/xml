@@ -8,10 +8,10 @@ use Data::Dumper;
 
 use FindBin qw($Bin);
 use lib "$Bin/../lib";
-use DBD::XML;
+use DBI;
 
 print "Test 1 - import from file\n";
-my $dbh = DBI->connect('dbi:XML(RaiseError => 1):');
+my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
 # To be replaces with xml_import one the driver has been registered
 # print "ad_import file\n";
@@ -27,7 +27,7 @@ $sth->execute();
 $sth->dump_results();
 
 print "Test 2 - import from string\n";
-$dbh = DBI->connect('dbi:XML(RaiseError => 1):');
+$dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 # print "ad_import string\n";
 $dbh->func('person2', 'XML', [<DATA>], 'ad_import');
 

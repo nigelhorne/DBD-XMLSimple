@@ -1,4 +1,4 @@
-package DBD::XML;
+package DBD::XMLSimple;
 
 # GPL2.  Don't use this yet, it's a WIP
 # Change ad_import to xml_import once it's been registered
@@ -26,13 +26,13 @@ sub driver
 	$drh = $class->SUPER::driver({
 		'Name' => 'XML',
 		'Version' => $VERSION,
-		'Attribution' => 'DBD::XML by Nigel Horne',
+		'Attribution' => 'DBD::XMLSimple by Nigel Horne',
 	});
 
 	if($drh) {
 		unless($methods_already_installed++) {
 			DBI->setup_driver(__PACKAGE__);
-			DBD::XML::db->install_method('ad_import');
+			DBD::XMLSimple::db->install_method('ad_import');
 		}
 	}
 
@@ -44,7 +44,7 @@ sub CLONE
 	undef $drh;
 }
 
-package DBD::XML::dr;
+package DBD::XMLSimple::dr;
 
 use vars qw($imp_data_size);
 
@@ -58,15 +58,15 @@ sub DESTROY
 	shift->{tables} = {};
 }
 
-package DBD::XML::db;
+package DBD::XMLSimple::db;
 
 use vars qw($imp_data_size);
 
 require Cwd;
 require File::Spec;
 
-$DBD::XML::db::imp_data_size = 0;
-@DBD::XML::db::ISA = qw(DBI::DBD::SqlEngine::db);
+$DBD::XMLSimple::db::imp_data_size = 0;
+@DBD::XMLSimple::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
 sub ad_import
 {
@@ -78,23 +78,23 @@ sub ad_import
 	$dbh->{filename} = $file_name;
 }
 
-package DBD::XML::st;
+package DBD::XMLSimple::st;
 
 use strict;
 use warnings;
 
 use vars qw($imp_data_size);
 
-$DBD::XML::st::imp_data_size = 0;
-@DBD::XML::st::ISA = qw(DBI::DBD::SqlEngine::st);
+$DBD::XMLSimple::st::imp_data_size = 0;
+@DBD::XMLSimple::st::ISA = qw(DBI::DBD::SqlEngine::st);
 
-package DBD::XML::Statement;
+package DBD::XMLSimple::Statement;
 
 use strict;
 use warnings;
 use XML::Twig;
 
-@DBD::XML::Statement::ISA = qw(DBI::DBD::SqlEngine::Statement);
+@DBD::XMLSimple::Statement::ISA = qw(DBI::DBD::SqlEngine::Statement);
 
 sub open_table($$$$$)
 {
@@ -131,17 +131,17 @@ sub open_table($$$$$)
 	my @col_names = sort keys %col_names;
 	$table{'col_names'} = \@col_names;
 
-	return DBD::XML::Table->new($data, \%table);
+	return DBD::XMLSimple::Table->new($data, \%table);
 }
 
-package DBD::XML::Table;
+package DBD::XMLSimple::Table;
 
 use strict;
 use warnings;
 
 use Params::Util qw(_HASH0);
 
-@DBD::XML::Table::ISA = qw(DBI::DBD::SqlEngine::Table);
+@DBD::XMLSimple::Table::ISA = qw(DBI::DBD::SqlEngine::Table);
 
 sub new
 {
