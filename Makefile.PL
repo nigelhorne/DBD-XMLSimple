@@ -18,6 +18,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
 	'DBI' => 0,
+	'XML::Twig' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean		=> { FILES => 'DBD::XMLSimple-*' },
