@@ -139,8 +139,6 @@ package DBD::XMLSimple::Table;
 use strict;
 use warnings;
 
-use Params::Util qw(_HASH0);
-
 @DBD::XMLSimple::Table::ISA = qw(DBI::DBD::SqlEngine::Table);
 
 sub new
