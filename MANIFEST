@@ -6,4 +6,5 @@ README.md
 ignore.txt
 lib/DBD/XMLSimple.pm
 t/00-load.t
+t/10simpledata.t
 META.yml                                 Module meta-data (added by MakeMaker)
