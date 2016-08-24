@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 4;
+use Test::Most;
 # use Test::NoWarnings;	# FIXME: remove once registration completed
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
@@ -13,7 +13,6 @@ BEGIN {
 }
 
 if($ENV{'TRAVIS_TESTING'}) {
-	diag "$Bin/../data/person.xml";
 	plan skip_all => 'FIXME: this test fails on Travis';
 } else {
 	diag("Ignore warnings about unregistered driver and drv_prefix for now");
@@ -30,4 +29,5 @@ if($ENV{'TRAVIS_TESTING'}) {
 	my @row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'A N Other');
+	done_testing(4);
 }

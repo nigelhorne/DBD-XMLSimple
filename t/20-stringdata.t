@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 4;
+use Test::Most;
 # use Test::NoWarnings;	# FIXME: remove once registration completed
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
@@ -28,6 +28,7 @@ if($ENV{'TRAVIS_TESTING'}) {
 	my @row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'njh@bandsman.co.uk');
+	done_testing(4);
 }
 
 __DATA__
