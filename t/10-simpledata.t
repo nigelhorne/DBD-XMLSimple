@@ -20,7 +20,6 @@ SIMPLEDATA: {
 	$dbh->func('person2', 'XML', [<DATA>], 'x_import');
 
 	my $sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Nigel Horne'");
-	# print "execute\n";
 	$sth->execute();
 	my @rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 1);
