@@ -29,5 +29,5 @@ if($ENV{'TRAVIS_TESTING'}) {
 	my @row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'A N Other');
-	done_testing(4);
 }
+done_testing(4);

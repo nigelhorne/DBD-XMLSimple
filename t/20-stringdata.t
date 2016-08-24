@@ -28,8 +28,8 @@ if($ENV{'TRAVIS_TESTING'}) {
 	my @row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'njh@bandsman.co.uk');
-	done_testing(4);
 }
+done_testing(4);
 
 __DATA__
 <?xml version="1.0" encoding="US-ASCII"?>
