@@ -18,6 +18,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
 	'DBI' => 1.636,
+	'DBI::DBD' => '12.015129',
 	'XML::Twig' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
