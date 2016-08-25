@@ -11,4 +11,5 @@ t/20-stringdata.t
 t/apoc.t
 t/bin.t
 t/boiler.t
+t/changes.t
 META.yml                                 Module meta-data (added by MakeMaker)
