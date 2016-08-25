@@ -12,4 +12,5 @@ t/apoc.t
 t/bin.t
 t/boiler.t
 t/changes.t
+t/coverage.t
 META.yml                                 Module meta-data (added by MakeMaker)

@@ -226,4 +226,54 @@ sub get_table_meta($$$$;$)
 	return($table, $meta);
 }
 
-1;
+=head1 AUTHOR
+
+Nigel Horne, C<< <njh at bandsman.co.uk> >>
+
+=head1 BUGS
+
+I don't know what they are yet,
+
+=head1 SEE ALSO
+
+L<DBD::AnyData>
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc DBD::XMLSimple
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DBD-XMLSimple>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/DBD-XMLSimple>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/DBD-XMLSimple>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/DBD-XMLSimple/>
+
+=back
+
+
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2016 Nigel Horne.
+
+This program is released under the following licence: GPL
+
+=cut
+
+1; # End of DBD::XMLSimple
