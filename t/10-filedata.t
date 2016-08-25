@@ -8,9 +8,10 @@ use Test::Most;
 eval 'use autodie qw(:all)';	# Test for open/close failures
 use FindBin qw($Bin);
 
-if($ENV{'TRAVIS_TESTING'}) {
-	plan skip_all => 'FIXME: this test fails on Travis';
-} else {
+#if($ENV{'TRAVIS_TESTING'}) {
+	#plan skip_all => 'FIXME: this test fails on Travis';
+#} else {
+FILEDATA: {
 	plan tests => 4;
 	use_ok('DBI');
 	diag("Ignore warnings about unregistered driver and drv_prefix for now");

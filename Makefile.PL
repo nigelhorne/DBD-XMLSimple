@@ -17,7 +17,7 @@ WriteMakefile(
 	'Test::Most' => 0,
     },
     PREREQ_PM => {
-	'DBI' => 0,
+	'DBI' => 1.636,
 	'XML::Twig' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
