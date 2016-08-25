@@ -8,6 +8,8 @@ perl:
   - "5.16"
   - "5.14"
 before_install:
+  - cpanm --skip-satisfied --installdeps -q -n DBI::DBD DBI DBI::DBD::SqlEngine
+  - cpanm --skip-satisfied -q -n DBI::DBD DBI DBI::DBD::SqlEngine
   cpanm -n Devel::Cover::Report::Coveralls Test::Script
 script:
   perl Makefile.PL && make && TRAVIS_TESTING=1 cover -test -report coveralls

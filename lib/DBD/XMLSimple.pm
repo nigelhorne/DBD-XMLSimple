@@ -19,7 +19,6 @@ Version 0.01
 # Re-uses code from existing DBD Drivers, especially DBD::AnyData
 # Nigel Horne: njh@bandsman.co.uk
 
-require DBI::DBD::SqlEngine;
 use base qw(DBI::DBD::SqlEngine);
 
 use vars qw($VERSION $drh $methods_already_installed);
