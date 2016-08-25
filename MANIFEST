@@ -8,4 +8,7 @@ lib/DBD/XMLSimple.pm
 t/00-load.t
 t/10-filedata.t
 t/20-stringdata.t
+t/apoc.t
+t/bin.t
+t/boiler.t
 META.yml                                 Module meta-data (added by MakeMaker)

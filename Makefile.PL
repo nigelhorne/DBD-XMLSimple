@@ -15,6 +15,7 @@ WriteMakefile(
     PL_FILES	=> {},
     BUILD_REQUIRES => {
 	'Test::Most' => 0,
+	'Test::Script' => 0,
     },
     PREREQ_PM => {
 	'XML::Twig' => 0,
