@@ -16,6 +16,8 @@ WriteMakefile(
     BUILD_REQUIRES => {
 	'Test::Most' => 0,
 	'Test::Script' => 0,
+	'autodie' => 0,
+	'IPC::System::Simple' => 0,
     },
     PREREQ_PM => {
 	'XML::Twig' => 0,
