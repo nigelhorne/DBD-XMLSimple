@@ -17,10 +17,7 @@ WriteMakefile(
 	'Test::Most' => 0,
     },
     PREREQ_PM => {
-	'DBI' => 1.636,
-	'DBI::DBD' => 12.015129,
-	'DBI::DBD::SqlEngine' => 0.06,
-	'XML::Twig' => 3.49,
+	'XML::Twig' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean		=> { FILES => 'DBD::XMLSimple-*' },
