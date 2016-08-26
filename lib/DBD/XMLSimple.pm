@@ -74,9 +74,6 @@ package DBD::XMLSimple::db;
 
 use vars qw($imp_data_size);
 
-require Cwd;
-require File::Spec;
-
 $DBD::XMLSimple::db::imp_data_size = 0;
 @DBD::XMLSimple::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
