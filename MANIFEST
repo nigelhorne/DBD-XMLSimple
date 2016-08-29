@@ -15,4 +15,5 @@ t/changes.t
 t/coverage.t
 t/critic.t
 t/cv.t
+t/dist.t
 META.yml                                 Module meta-data (added by MakeMaker)
