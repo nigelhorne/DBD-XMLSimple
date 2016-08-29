@@ -1,5 +1,8 @@
 package DBD::XMLSimple;
 
+use warnings;
+use strict;
+
 =head1 NAME
 
 DBD::XMLSimple - Access XML data via the DBI interface
@@ -12,12 +15,44 @@ Version 0.01
 
 =head1 SYNOPSIS
 
+Reads XML and makes it available via DBI.
+
+GPL2.  Don't use this yet, it's a WIP
+Change x_import to xmls_import once it's been registered
+Re-uses code from existing DBD Drivers, especially DBD::AnyData
+Nigel Horne: njh@bandsman.co.uk
+
+    use DBI;
+
+    my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
+
+    # To be replaced with xmls_import once the driver has been registered
+    $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'x_import');
+
+    my $sth = $dbh->prepare("SELECT * FROM person");
+
+Input data will be something like this:
+
+    <?xml version="1.0" encoding="US-ASCII"?>
+    <table>
+	<row id="1">
+	    <name>Nigel Horne</name>
+	    <email>njh@bandsman.co.uk</email>
+	</row>
+	<row id="2">
+	    <name>A N Other</name>
+	    <email>nobody@example.com</email>
+	</row>
+    </table>
 =cut
 
-# GPL2.  Don't use this yet, it's a WIP
-# Change x_import to xmls_import once it's been registered
-# Re-uses code from existing DBD Drivers, especially DBD::AnyData
-# Nigel Horne: njh@bandsman.co.uk
+=head1 SUBROUTINES/METHODS
+
+=head2 driver
+
+No routines in this module should be called directly by the application.
+
+=cut
 
 use base qw(DBI::DBD::SqlEngine);
 
