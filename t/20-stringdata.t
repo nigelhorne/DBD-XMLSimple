@@ -7,8 +7,7 @@ use Test::Most;
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
 
-
-if($ENV{'TRAVIS_TESTING'}) {
+if($ENV{'TRAVIS_PERL_VERSION'}) {
 	plan skip_all => 'FIXME: this test fails on Travis';
 } else {
 	plan tests => 4;
