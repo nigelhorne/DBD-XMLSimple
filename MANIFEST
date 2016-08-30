@@ -18,4 +18,5 @@ t/cv.t
 t/dist.t
 t/gv.t
 t/kwalitee.t
+t/metrics.t
 META.yml                                 Module meta-data (added by MakeMaker)
