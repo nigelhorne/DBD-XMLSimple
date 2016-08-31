@@ -5,7 +5,7 @@
 		<email>njh@bandsman.co.uk</email>
 	</row>
 	<row id="2">
-		<email>nobody@example.com</email>
 		<name>A N Other</name>
+		<email>nobody@example.com</email>
 	</row>
 </table>

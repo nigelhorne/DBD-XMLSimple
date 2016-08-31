@@ -170,7 +170,10 @@ sub open_table($$$$$)
 		$rows++;
 	}
 
+	# FIXME:  This assumes the each of the records in the XML file is
+	# in the same order
 	$data->{'rows'} = $rows;
+
 	$table{'table_name'} = $tname;
 	$table{'col_names'} = \@col_names;
 	$table{'col_nums'} = \%col_nums;
@@ -196,13 +199,13 @@ sub new
 	my $rc = $class->SUPER::new($data, $attr, $flags);
 
 	$rc->{col_names} = $attr->{col_names};
+	$rc->{col_nums} = $attr->{col_nums};
 	return $rc;
 }
 
 sub fetch_row($$)
 {
 	my($self, $data) = @_;
-	my $requested_cols = $data->{sql_stmt}->{NAME};
 	my $dbh = $data->{Database};
 
 	if($self->{cursor} >= $data->{rows}) {
@@ -266,7 +269,15 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
-I don't know what they are yet,
+Fields must be in the same order so this does not work (yet):
+	<row id="1">
+		<col1>a</col1>
+		<col2>b</col2>
+	</row>
+	<row id="2">
+		<col2>c</col2>
+		<col1>d</col1>
+	<row>
 
 =head1 SEE ALSO
 
@@ -300,9 +311,7 @@ L<http://search.cpan.org/dist/DBD-XMLSimple/>
 
 =back
 
-
-
-=head1 LICENSE AND COPYRIGHT
+=head1 LICENCE AND COPYRIGHT
 
 Copyright 2016 Nigel Horne.
 

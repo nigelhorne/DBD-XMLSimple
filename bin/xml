@@ -53,7 +53,7 @@ __DATA__
 		<name>Nigel Horne</name>
 	</row>
 	<row id="2">
-		<name>A N Other</name>
 		<email>somebody@example.com</email>
+		<name>A N Other</name>
 	</row>
 </table>
