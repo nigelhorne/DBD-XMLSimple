@@ -155,23 +155,25 @@ sub open_table($$$$$)
 
 	my $root = $twig->root;
 	my %table;
-	my $rows;
-	my %col_names;
+	my $rows = 0;
+	my %col_nums;
+	my @col_names;
 	foreach my $record($root->children()) {
 		my %row;
+		my $index = 0;
 		foreach my $leaf($record->children) {
 			$row{$leaf->name()} = $leaf->field();
-			$col_names{$leaf->name()} = 1;
+			$col_nums{$leaf->name()} = $index++;
+			push @col_names, $leaf->name() if($rows eq 0);
 		}
 		$table{data}->{$record->att('id')} = \%row;
 		$rows++;
 	}
 
 	$data->{'rows'} = $rows;
-
 	$table{'table_name'} = $tname;
-	my @col_names = sort keys %col_names;
 	$table{'col_names'} = \@col_names;
+	$table{'col_nums'} = \%col_nums;
 
 	return DBD::XMLSimple::Table->new($data, \%table);
 }
