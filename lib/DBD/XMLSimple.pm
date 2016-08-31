@@ -114,8 +114,7 @@ $DBD::XMLSimple::db::imp_data_size = 0;
 
 sub x_import
 {
-	my $dbh = shift;
-	my($table_name, $format, $file_name, $flags) = @_;
+	my($dbh, $table_name, $format, $file_name, $flags) = @_;
 
 	die if($format ne 'XML');
 
@@ -206,7 +205,6 @@ sub new
 sub fetch_row($$)
 {
 	my($self, $data) = @_;
-	my $dbh = $data->{Database};
 
 	if($self->{cursor} >= $data->{rows}) {
 		return;
@@ -236,7 +234,7 @@ sub complete_table_name($$$$)
 
 sub open_data
 {
-	my($className, $meta, $attrs, $flags) = @_;
+	# my($className, $meta, $attrs, $flags) = @_;
 }
 
 sub bootstrap_table_meta
