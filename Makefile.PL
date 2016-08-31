@@ -29,8 +29,8 @@ WriteMakefile(
     	resources => {
     		repository => {
 			type => 'git',
-			url => 'git://github.com/nigelhorne/DBD::XMLSimple.git',
-			web => 'https://github.com/nigelhorne/DBD::XMLSimple',
+			url => 'git://github.com/nigelhorne/DBD-XMLSimple.git',
+			web => 'https://github.com/nigelhorne/DBD-XMLSimple',
     		},
 	},
     },
