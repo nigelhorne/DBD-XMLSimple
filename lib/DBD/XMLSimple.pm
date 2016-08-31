@@ -20,8 +20,8 @@ Reads XML and makes it available via DBI.
 GPL2.  Don't use this yet, it's a WIP
 Change x_import to xmls_import once it's been registered
 Re-uses code from existing DBD Drivers, especially DBD::AnyData
-Nigel Horne: njh@bandsman.co.uk
 
+    use FindBin qw($Bin);
     use DBI;
 
     my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
