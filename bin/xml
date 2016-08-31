@@ -49,8 +49,8 @@ __DATA__
 <?xml version="1.0" encoding="US-ASCII"?>
 <table>
 	<row id="1">
-		<name>Nigel Horne</name>
 		<email>njh@concert-bands.co.uk</email>
+		<name>Nigel Horne</name>
 	</row>
 	<row id="2">
 		<name>A N Other</name>
