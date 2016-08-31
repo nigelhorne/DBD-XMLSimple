@@ -15,7 +15,7 @@ WriteMakefile(
     PL_FILES	=> {},
     BUILD_REQUIRES => {
 	'Test::Most' => 0,
-	'Test::Script' => 0,
+	'Test::Script' => 1.12,
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
     },
