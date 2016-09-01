@@ -4,6 +4,7 @@ Makefile.PL
 LICENCE
 README.md
 ignore.txt
+bin/xml
 lib/DBD/XMLSimple.pm
 t/00-load.t
 t/10-filedata.t

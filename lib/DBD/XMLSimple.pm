@@ -17,10 +17,6 @@ Version 0.01
 
 Reads XML and makes it available via DBI.
 
-GPL2.  Don't use this yet, it's a WIP
-Change x_import to xmls_import once it's been registered
-Re-uses code from existing DBD Drivers, especially DBD::AnyData
-
     use FindBin qw($Bin);
     use DBI;
 
@@ -277,9 +273,11 @@ Fields must be in the same order so this does not work (yet):
 		<col1>d</col1>
 	<row>
 
+Change x_import to xmls_import once it's been registered
+
 =head1 SEE ALSO
 
-L<DBD::AnyData>
+L<DBD::AnyData>, which was also used as a template for this module.
 
 =head1 SUPPORT
 
