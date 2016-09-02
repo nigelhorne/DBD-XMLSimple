@@ -1,7 +1,7 @@
 Revision history for DBD-XMLSimple
 
 0.02
-	Added bin/xml to the MANIFEST
+	Added README and bin/xml to the MANIFEST
 
 0.01    Wed Aug 31 11:52:07 EDT 2016
         First draft
