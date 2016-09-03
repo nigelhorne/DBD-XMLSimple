@@ -264,14 +264,15 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 =head1 BUGS
 
 Fields must be in the same order so this does not work (yet):
-	<row id="1">
-		<col1>a</col1>
-		<col2>b</col2>
-	</row>
-	<row id="2">
-		<col2>c</col2>
-		<col1>d</col1>
-	<row>
+
+    <row id="1">
+        <col1>a</col1>
+        <col2>b</col2>
+    </row>
+    <row id="2">
+        <col2>c</col2>
+        <col1>d</col1>
+    <row>
 
 Change x_import to xmls_import once it's been registered
 
