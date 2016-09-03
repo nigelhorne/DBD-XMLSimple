@@ -2,13 +2,12 @@
 
 use strict;
 use warnings;
-use Test::Most;
+use Test::Most tests => 7;
 # use Test::NoWarnings;	# FIXME: remove once registration completed
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
 
 STRINGDATA: {
-	plan tests => 4;
 	use_ok('DBI');
 	diag("Ignore warnings about unregistered driver and drv_prefix for now");
 
@@ -24,6 +23,14 @@ STRINGDATA: {
 	my @row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'njh@bandsman.co.uk');
+
+	$sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Bugs Bunny'");
+	$sth->execute();
+	@rc = @{$sth->fetchall_arrayref()};
+	ok(scalar(@rc) == 1);
+	my @row1 = @{$rc[0]};
+	ok(scalar(@row1) == 1);
+	ok(!defined($row1[0]));
 }
 
 __DATA__
@@ -36,5 +43,8 @@ __DATA__
 	<row id="2">
 		<name>A N Other</name>
 		<email>somebody@example.com</email>
+	</row>
+	<row id="3">
+		<name>Bugs Bunny</name>
 	</row>
 </table>
