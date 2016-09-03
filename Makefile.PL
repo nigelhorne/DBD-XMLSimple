@@ -21,6 +21,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
 	'XML::Twig' => 0,
+	'SQL::Statement' => 1.410,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean		=> { FILES => 'DBD::XMLSimple-*' },
