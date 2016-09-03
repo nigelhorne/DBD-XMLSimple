@@ -1,6 +1,6 @@
 Revision history for DBD-XMLSimple
 
-0.03
+0.03	Sat Sep  3 09:08:15 EDT 2016
 	Added SQL::Statement to the pre-requisites
 
 0.02	Fri Sep  2 12:24:46 EDT 2016
