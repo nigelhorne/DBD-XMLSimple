@@ -9,7 +9,7 @@ DBD::XMLSimple - Access XML data via the DBI interface
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
@@ -54,7 +54,7 @@ use base qw(DBI::DBD::SqlEngine);
 
 use vars qw($VERSION $drh $methods_already_installed);
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 our $drh = undef;
 
 sub driver
