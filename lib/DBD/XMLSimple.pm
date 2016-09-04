@@ -157,12 +157,11 @@ sub open_table($$$$$)
 		my %row;
 		my $index = 0;
 		foreach my $leaf($record->children) {
-			$row{$leaf->name()} = $leaf->field();
-			# FIXME:  This should be to add a new column if
-			#	it doesn't exist
-			if($rows == 0) {
-				$col_nums{$leaf->name()} = $index++;
-				push @col_names, $leaf->name();
+			my $key = $leaf->name();
+			$row{$key} = $leaf->field();
+			if(!exists($col_nums{$key})) {
+				$col_nums{$key} = $index++;
+				push @col_names, $key;
 			}
 		}
 		$table{data}->{$record->att('id')} = \%row;
@@ -266,8 +265,6 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 =head1 BUGS
 
 Change x_import to xmls_import once it's been registered
-
-The first record must contain all of the fields.
 
 =head1 SEE ALSO
 

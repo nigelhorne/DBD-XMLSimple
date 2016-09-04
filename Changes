@@ -1,7 +1,7 @@
 Revision history for DBD-XMLSimple
 
 0.05
-	Allow XML data to be in any order
+	Support more free form input data
 
 0.04	Sun Sep  4 07:53:01 EDT 2016
 	Added data.xml to the pre-requisites

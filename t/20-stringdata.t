@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 7;
+use Test::Most tests => 8;
 # use Test::NoWarnings;	# FIXME: remove once registration completed
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
@@ -28,23 +28,28 @@ STRINGDATA: {
 	$sth->execute();
 	@rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 1);
-	my @row1 = @{$rc[0]};
+	@row1 = @{$rc[0]};
 	ok(scalar(@row1) == 1);
 	ok(!defined($row1[0]));
+
+	$sth = $dbh->prepare("Select name FROM person2");
+	$sth->execute();
+	@rc = @{$sth->fetchall_arrayref()};
+	ok(scalar(@rc) == 3);
 }
 
 __DATA__
 <?xml version="1.0" encoding="US-ASCII"?>
 <table>
 	<row id="1">
+		<name>Bugs Bunny</name>
+	</row>
+	<row id="2">
 		<name>Nigel Horne</name>
 		<email>njh@bandsman.co.uk</email>
 	</row>
-	<row id="2">
+	<row id="3">
 		<name>A N Other</name>
 		<email>somebody@example.com</email>
-	</row>
-	<row id="3">
-		<name>Bugs Bunny</name>
 	</row>
 </table>
