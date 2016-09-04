@@ -49,7 +49,7 @@ __DATA__
 		<email>njh@bandsman.co.uk</email>
 	</row>
 	<row id="3">
-		<name>A N Other</name>
 		<email>somebody@example.com</email>
+		<name>A N Other</name>
 	</row>
 </table>
