@@ -158,15 +158,17 @@ sub open_table($$$$$)
 		my $index = 0;
 		foreach my $leaf($record->children) {
 			$row{$leaf->name()} = $leaf->field();
-			$col_nums{$leaf->name()} = $index++;
-			push @col_names, $leaf->name() if($rows eq 0);
+			# FIXME:  This should be to add a new column if
+			#	it doesn't exist
+			if($rows == 0) {
+				$col_nums{$leaf->name()} = $index++;
+				push @col_names, $leaf->name();
+			}
 		}
 		$table{data}->{$record->att('id')} = \%row;
 		$rows++;
 	}
 
-	# FIXME:  This assumes the each of the records in the XML file is
-	# in the same order
 	$data->{'rows'} = $rows;
 
 	$table{'table_name'} = $tname;
@@ -263,18 +265,9 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
-Fields must be in the same order so this does not work (yet):
-
-    <row id="1">
-        <col1>a</col1>
-        <col2>b</col2>
-    </row>
-    <row id="2">
-        <col2>c</col2>
-        <col1>d</col1>
-    <row>
-
 Change x_import to xmls_import once it's been registered
+
+The first record must contain all of the fields.
 
 =head1 SEE ALSO
 
