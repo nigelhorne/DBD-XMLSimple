@@ -1,5 +1,8 @@
 Revision history for DBD-XMLSimple
 
+0.04
+	Added data.xml to the pre-requisites
+
 0.03	Sat Sep  3 09:08:15 EDT 2016
 	Added SQL::Statement to the pre-requisites
 
