@@ -132,6 +132,7 @@ package DBD::XMLSimple::Statement;
 use strict;
 use warnings;
 use XML::Twig;
+use Carp;
 
 @DBD::XMLSimple::Statement::ISA = qw(DBI::DBD::SqlEngine::Statement);
 
@@ -167,6 +168,9 @@ sub open_table($$$$$)
 		$table{data}->{$record->att('id')} = \%row;
 		$rows++;
 	}
+
+	carp "No data found to import" if($rows == 0);
+	carp "Can't determine column names" if(scalar(@col_names) == 0);
 
 	$data->{'rows'} = $rows;
 
