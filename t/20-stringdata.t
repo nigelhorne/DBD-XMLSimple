@@ -2,7 +2,8 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 8;
+use Test::Most tests => 10;
+use Test::DatabaseRow;
 # use Test::NoWarnings;	# FIXME: remove once registration completed
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
@@ -13,7 +14,7 @@ STRINGDATA: {
 
 	my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
-	$dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
+	local $Test::DatabaseRow::dbh = $dbh;
 	$dbh->func('person2', 'XML', [<DATA>], 'x_import');
 
 	my $sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Nigel Horne'");
@@ -36,6 +37,17 @@ STRINGDATA: {
 	$sth->execute();
 	@rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 3);
+
+	all_row_ok(
+		sql => "Select name FROM person2",
+		description => '3 names in the database',
+		results => 3,
+	);
+	all_row_ok(
+		sql => 'Select email FROM person2 WHERE email IS NOT NULL',
+		description => '2 e-mail addresses in the database',
+		results => 2,
+	);
 }
 
 __DATA__
