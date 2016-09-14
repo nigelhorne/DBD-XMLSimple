@@ -40,6 +40,23 @@ Input data will be something like this:
 	    <email>nobody@example.com</email>
 	</row>
     </table>
+
+If a leaf appears twice it will be concatenated
+
+    <?xml version="1.0" encoding="US-ASCII"?>
+    <table>
+	<row id="1">
+	    <name>Nigel Horne</name>
+	    <email>njh@bandsman.co.uk</email>
+	    <email>nhorne@pause.org</email>
+	</row>
+    </table>
+
+    $sth = $dbh->prepare("Select email FROM person");
+    $sth->execute();
+    $sth->dump_results();
+
+    Gives the output "njh@bandsman.co.uk,nhorne@pause.org"
 =cut
 
 =head1 SUBROUTINES/METHODS
@@ -159,7 +176,8 @@ sub open_table($$$$$)
 		my $index = 0;
 		foreach my $leaf($record->children) {
 			my $key = $leaf->name();
-			$row{$key} = $leaf->field();
+			$row{$key} .= ',' if($row{$key});
+			$row{$key} .= $leaf->field();
 			if(!exists($col_nums{$key})) {
 				$col_nums{$key} = $index++;
 				push @col_names, $key;
