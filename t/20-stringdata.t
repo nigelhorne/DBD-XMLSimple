@@ -15,9 +15,9 @@ STRINGDATA: {
 	my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
 	local $Test::DatabaseRow::dbh = $dbh;
-	$dbh->func('person2', 'XML', [<DATA>], 'x_import');
+	$dbh->func('people', 'XML', [<DATA>], 'x_import');
 
-	my $sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Nigel Horne'");
+	my $sth = $dbh->prepare("Select email FROM people WHERE name = 'Nigel Horne'");
 	$sth->execute();
 	my @rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 1);
@@ -25,7 +25,7 @@ STRINGDATA: {
 	ok(scalar(@row1) == 1);
 	ok($row1[0] eq 'njh@bandsman.co.uk');
 
-	$sth = $dbh->prepare("Select email FROM person2 WHERE name = 'Bugs Bunny'");
+	$sth = $dbh->prepare("Select email FROM people WHERE name = 'Bugs Bunny'");
 	$sth->execute();
 	@rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 1);
@@ -33,18 +33,18 @@ STRINGDATA: {
 	ok(scalar(@row1) == 1);
 	ok(!defined($row1[0]));
 
-	$sth = $dbh->prepare("Select name FROM person2");
+	$sth = $dbh->prepare('Select name FROM people');
 	$sth->execute();
 	@rc = @{$sth->fetchall_arrayref()};
 	ok(scalar(@rc) == 3);
 
 	all_row_ok(
-		sql => "Select name FROM person2",
+		sql => "Select name FROM people",
 		description => '3 names in the database',
 		results => 3,
 	);
 	all_row_ok(
-		sql => 'Select email FROM person2 WHERE email IS NOT NULL',
+		sql => 'Select email FROM people WHERE email IS NOT NULL',
 		description => '2 e-mail addresses in the database',
 		results => 2,
 	);
@@ -52,16 +52,16 @@ STRINGDATA: {
 
 __DATA__
 <?xml version="1.0" encoding="US-ASCII"?>
-<table>
-	<row id="1">
+<people>
+	<person id="1">
 		<name>Bugs Bunny</name>
-	</row>
-	<row id="2">
+	</person>
+	<person id="2">
 		<name>Nigel Horne</name>
 		<email>njh@bandsman.co.uk</email>
-	</row>
-	<row id="3">
+	</person>
+	<person id="3">
 		<email>somebody@example.com</email>
 		<name>A N Other</name>
-	</row>
-</table>
+	</person>
+</people>
