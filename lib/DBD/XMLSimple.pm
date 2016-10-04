@@ -225,18 +225,15 @@ sub fetch_row($$)
 {
 	my($self, $data) = @_;
 
-	if($self->{cursor} >= $data->{rows}) {
+	if($self->{'cursor'} >= $data->{'rows'}) {
 		return;
 	}
-	$self->{cursor}++;
+	$self->{'cursor'}++;
 
-	my @fields;
-	foreach my $col(@{$self->{'col_names'}}) {
-		push @fields, $self->{'data'}->{$self->{'cursor'}}->{$col};
-	}
-	$self->{row} = \@fields;
+	my @fields = map { $self->{'data'}->{$self->{'cursor'}}->{$_ } } @{$self->{'col_names'}};
+	$self->{'row'} = \@fields;
 
-	return $self->{row};
+	return $self->{'row'};
 }
 
 sub seek($$$$)
