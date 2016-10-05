@@ -17,6 +17,12 @@ Version 0.05
 
 Reads XML and makes it available via DBI.
 
+Sadly DBD::AnyData doesn't work with the latest DBI and DBD::AnyData2 isn't
+out yet, so I am writing this pending the publication of DBD::AnyData2
+
+DBD-XMLSimple doesn't yet expect to support complex XML data, so that's why
+it's not called DBD-XML.
+
     use FindBin qw($Bin);
     use DBI;
 
@@ -127,11 +133,11 @@ $DBD::XMLSimple::db::imp_data_size = 0;
 
 sub x_import
 {
-	my($dbh, $table_name, $format, $file_name, $flags) = @_;
+	my($dbh, $table_name, $format, $filename, $flags) = @_;
 
 	die if($format ne 'XML');
 
-	$dbh->{filename} = $file_name;
+	$dbh->{filename} = $filename;
 }
 
 package DBD::XMLSimple::st;
