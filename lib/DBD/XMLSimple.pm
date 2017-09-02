@@ -78,6 +78,7 @@ use vars qw($VERSION $drh $methods_already_installed);
 
 our $VERSION = '0.05';
 our $drh = undef;
+our $methods_already_installed = 0;
 
 sub driver
 {
@@ -89,14 +90,14 @@ sub driver
 	# $drh = DBI::_new_drh($class, {
 	# $drh = DBI::_new_drh("$class::dr", {
 	$drh = $class->SUPER::driver({
-		'Name' => 'XML',
+		'Name' => 'XMLSimple',
 		'Version' => $VERSION,
 		'Attribution' => 'DBD::XMLSimple by Nigel Horne',
 	});
 
 	if($drh) {
 		unless($methods_already_installed++) {
-			DBI->setup_driver(__PACKAGE__);
+			# DBI->setup_driver(__PACKAGE__);
 			DBD::XMLSimple::db->install_method('xmlsimple_import');
 		}
 	}
