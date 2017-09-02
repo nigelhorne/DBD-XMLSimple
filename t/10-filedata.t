@@ -11,13 +11,13 @@ use FindBin qw($Bin);
 
 FILEDATA: {
 	use_ok('DBI');
-	diag("Ignore warnings about unregistered driver and drv_prefix for now");
+	# diag("Ignore warnings about unregistered driver and drv_prefix for now");
 
 	my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
 	local $Test::DatabaseRow::dbh = $dbh;
 
-	$dbh->func('person', 'XML', "$Bin/../data/person.xml", 'x_import');
+	$dbh->func('person', 'XML', "$Bin/../data/person.xml", 'xmlsimple_import');
 
 	my $sth = $dbh->prepare("Select name FROM person WHERE email = 'nobody\@example.com'");
 	$sth->execute();

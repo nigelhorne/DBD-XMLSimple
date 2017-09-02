@@ -10,12 +10,12 @@ eval 'use autodie qw(:all)';	# Test for open/close failures
 
 STRINGDATA: {
 	use_ok('DBI');
-	diag("Ignore warnings about unregistered driver and drv_prefix for now");
+	# diag("Ignore warnings about unregistered driver and drv_prefix for now");
 
 	my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
 	local $Test::DatabaseRow::dbh = $dbh;
-	$dbh->func('people', 'XML', [<DATA>], 'x_import');
+	$dbh->func('people', 'XML', [<DATA>], 'xmlsimple_import');
 
 	my $sth = $dbh->prepare("Select email FROM people WHERE name = 'Nigel Horne'");
 	$sth->execute();

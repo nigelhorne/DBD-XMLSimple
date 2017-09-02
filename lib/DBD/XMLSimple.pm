@@ -28,8 +28,7 @@ it's not called DBD-XML.
 
     my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
-    # To be replaced with xmls_import once the driver has been registered
-    $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'x_import');
+    $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'xmlsimple_import');
 
     my $sth = $dbh->prepare("SELECT * FROM person");
 
@@ -98,7 +97,7 @@ sub driver
 	if($drh) {
 		unless($methods_already_installed++) {
 			DBI->setup_driver(__PACKAGE__);
-			DBD::XMLSimple::db->install_method('x_import');
+			DBD::XMLSimple::db->install_method('xmlsimple_import');
 		}
 	}
 
@@ -131,7 +130,7 @@ use vars qw($imp_data_size);
 $DBD::XMLSimple::db::imp_data_size = 0;
 @DBD::XMLSimple::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
-sub x_import
+sub xmlsimple_import
 {
 	my($dbh, $table_name, $format, $filename, $flags) = @_;
 
@@ -289,8 +288,6 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
-Change x_import to xmls_import once it's been registered
-
 =head1 SEE ALSO
 
 L<DBD::AnyData>, which was also used as a template for this module.
@@ -325,7 +322,7 @@ L<http://search.cpan.org/dist/DBD-XMLSimple/>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright 2016 Nigel Horne.
+Copyright 2016-2017 Nigel Horne.
 
 This program is released under the following licence: GPL
 

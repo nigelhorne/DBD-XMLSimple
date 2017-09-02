@@ -21,8 +21,7 @@ it's not called DBD-XML.
 
     my $dbh = DBI->connect('dbi:XMLSimple(RaiseError => 1):');
 
-    # To be replaced with xmls_import once the driver has been registered
-    $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'x_import');
+    $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'xmlsimple_import');
 
     my $sth = $dbh->prepare("SELECT * FROM person");
 
@@ -69,8 +68,6 @@ Nigel Horne, `<njh at bandsman.co.uk>`
 
 # BUGS
 
-Change x\_import to xmls\_import once it's been registered
-
 # SEE ALSO
 
 [DBD::AnyData](https://metacpan.org/pod/DBD::AnyData), which was also used as a template for this module.
@@ -101,6 +98,6 @@ You can also look for information at:
 
 # LICENCE AND COPYRIGHT
 
-Copyright 2016 Nigel Horne.
+Copyright 2016-2017 Nigel Horne.
 
 This program is released under the following licence: GPL
