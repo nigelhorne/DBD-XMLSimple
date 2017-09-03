@@ -4,7 +4,7 @@ Access XML data via the DBI interface
 
 # VERSION
 
-Version 0.05
+Version 0.06
 
 # SYNOPSIS
 
