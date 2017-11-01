@@ -114,6 +114,8 @@ package DBD::XMLSimple::dr;
 
 use vars qw($imp_data_size);
 
+$imp_data_size = 0;
+
 sub disconnect_all
 {
 	shift->{tables} = {};
