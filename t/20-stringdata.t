@@ -2,9 +2,9 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 10;
+use Test::Most tests => 11;
 use Test::DatabaseRow;
-# use Test::NoWarnings;	# FIXME: remove once registration completed
+use Test::NoWarnings;
 
 eval 'use autodie qw(:all)';	# Test for open/close failures
 

@@ -19,6 +19,7 @@ WriteMakefile(
 	'Test::Most' => 0,
 	'Test::Script' => 1.12,
 	'Test::DatabaseRow' => 0,
+	'Test::NoWarnings' => 0,
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
     },
