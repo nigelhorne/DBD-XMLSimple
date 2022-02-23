@@ -3,7 +3,7 @@
 use strict;
 
 use Test::Most tests => 10;
-use Test::Script;
+use Test::Script 1.12;
 
 script_compiles('bin/xml');
 script_runs(['bin/xml']);
