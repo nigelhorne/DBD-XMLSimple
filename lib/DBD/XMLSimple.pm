@@ -325,7 +325,7 @@ L<http://search.cpan.org/dist/DBD-XMLSimple/>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright 2016-2017 Nigel Horne.
+Copyright 2016-2024 Nigel Horne.
 
 This program is released under the following licence: GPL
 
