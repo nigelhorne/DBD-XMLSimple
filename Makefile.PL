@@ -23,13 +23,12 @@ WriteMakefile(
 	'Test::NoWarnings' => 0,
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
-    },
-    PREREQ_PM => {
+    }, PREREQ_PM => {
 	'XML::Twig' => 0,
 	'SQL::Statement' => 1.410,
 	'DBI::DBD::SqlEngine' => 0.06,
-	'DBI' => 1.637,	# Version that understands XMLSimple impoer
-	'Carp' => 0,
+	DBI => 1.643,	# Version that understands XMLSimple import
+	Carp => 0
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean		=> { FILES => 'DBD::XMLSimple-*' },
