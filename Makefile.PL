@@ -21,6 +21,7 @@ WriteMakefile(
 	'Test::DatabaseRow' => 0,
 	'Test::Differences' => 0,
 	'Test::NoWarnings' => 0,
+	'Test::Needs' => 0,
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
     }, PREREQ_PM => {

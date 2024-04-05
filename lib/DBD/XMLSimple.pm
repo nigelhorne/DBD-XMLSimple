@@ -84,7 +84,8 @@ sub driver
 {
 	return $drh if $drh;
 
-	my($class, $attr) = @_;
+	# my($class, $attr) = @_;
+	my $class = $_[0];
 
 	# $class .= '::dr';
 	# $drh = DBI::_new_drh($class, {
@@ -135,7 +136,8 @@ $DBD::XMLSimple::db::imp_data_size = 0;
 
 sub xmlsimple_import
 {
-	my($dbh, $table_name, $format, $filename, $flags) = @_;
+	# my($dbh, $table_name, $format, $filename, $flags) = @_;
+	my($dbh, $table_name, $format, $filename) = @_;
 
 	die if($format ne 'XML');
 
@@ -163,7 +165,8 @@ use Carp;
 
 sub open_table($$$$$)
 {
-	my($self, $data, $tname, $createMode, $lockMode) = @_;
+	# my($self, $data, $tname, $createMode, $lockMode) = @_;
+	my($self, $data, $tname) = @_;
 	my $dbh = $data->{Database};
 
 	my $twig = XML::Twig->new();
