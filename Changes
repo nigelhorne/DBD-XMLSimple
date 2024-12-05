@@ -1,5 +1,9 @@
 Revision history for DBD-XMLSimple
 
+0.08
+	Use Test::DescribeMe to simplify tests
+	Use Test::Needs
+
 0.07	Fri Feb  2 09:05:41 EST 2024
 	Fix uninit variable in DBI.pm
 
