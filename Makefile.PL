@@ -2,8 +2,17 @@
 
 use strict;
 use warnings;
-use File::Spec;
+use File::Spec 3.4;
 use ExtUtils::MakeMaker 6.64;	# 6.64 for TEST_REQUIRES
+
+my $dist = {
+	COMPRESS => 'gzip -9f',
+	SUFFIX => 'gz'
+};
+
+if($^O eq 'darwin') {
+	$dist->{'TAR'} = 'gtar';
+}
 
 WriteMakefile(
     NAME		=> 'DBD::XMLSimple',
@@ -19,6 +28,7 @@ WriteMakefile(
 	'Test::Most' => 0,
 	'Test::Script' => 1.12,
 	'Test::DatabaseRow' => 0,
+	'Test::DescribeMe' => 0,
 	'Test::Differences' => 0,
 	'Test::NoWarnings' => 0,
 	'Test::Needs' => 0,
@@ -30,8 +40,7 @@ WriteMakefile(
 	'DBI::DBD::SqlEngine' => 0.06,
 	DBI => 1.643,	# Version that understands XMLSimple import
 	Carp => 0
-    },
-    dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    }, dist => $dist,
     clean		=> { FILES => 'DBD::XMLSimple-*' },
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec
 		'meta-spec' => { version => 2 },
