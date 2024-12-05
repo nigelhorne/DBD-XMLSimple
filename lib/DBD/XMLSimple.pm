@@ -316,10 +316,6 @@ L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DBD-XMLSimple>
 
 L<http://annocpan.org/dist/DBD-XMLSimple>
 
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/DBD-XMLSimple>
-
 =item * Search CPAN
 
 L<http://search.cpan.org/dist/DBD-XMLSimple/>

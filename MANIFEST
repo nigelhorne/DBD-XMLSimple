@@ -26,6 +26,7 @@ t/eol.t
 t/gv.t
 t/kwalitee.t
 t/metrics.t
+t/modules-used.t
 t/namespaces.t
 t/noplan.t
 t/pod-cm.t
@@ -37,5 +38,4 @@ t/prereq.t
 t/snippets.t
 t/strict.t
 t/unused.t
-t/used.t
 t/vars.t
