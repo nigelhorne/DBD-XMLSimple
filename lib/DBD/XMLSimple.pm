@@ -200,7 +200,7 @@ sub open_table($$$$$)
 		$rows++;
 	}
 
-	carp "No data found to import" if($rows == 0);
+	carp 'No data found to import' if($rows == 0);
 	carp "Can't determine column names" if(scalar(@col_names) == 0);
 
 	$data->{'rows'} = $rows;
