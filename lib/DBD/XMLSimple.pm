@@ -186,7 +186,7 @@ sub open_table($$$$$)
 	if(ref($source) eq 'ARRAY') {
 		$twig->parse(join('', @{$source}));
 	} else {
-		$twig->parsefile($source);
+		$twig->parsefile($source) or croak("Cannot parse XML file '$source': $!");
 	}
 
 	my $root = $twig->root;

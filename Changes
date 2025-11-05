@@ -1,5 +1,8 @@
 Revision history for DBD-XMLSimple
 
+0;09
+	Croak on XML parsing error
+
 0.08	Wed Nov  5 14:23:38 EST 2025
 	Use Test::DescribeMe to simplify tests
 	Use Test::Needs
