@@ -45,7 +45,7 @@ WriteMakefile(
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
     }, dist => $dist,
-    clean		=> { FILES => 'DBD::XMLSimple-*' },
+    clean		=> { FILES => 'DBD-XMLSimple-*' },
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec
 		'meta-spec' => { version => 2 },
 		resources => {
@@ -63,5 +63,5 @@ WriteMakefile(
 			}
 		},
 	},
-	MIN_PERL_VERSION	=> '5.6.2'	# Probably would work, but never tested on earlier versions than this
+	MIN_PERL_VERSION => '5.6.2'	# Probably would work, but never tested on earlier versions than this
 );
