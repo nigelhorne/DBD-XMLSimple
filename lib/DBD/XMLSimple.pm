@@ -144,7 +144,8 @@ sub xmlsimple_import
 
 	die if($format ne 'XML');
 
-	$dbh->{filename} = $filename;
+	# $dbh->{tables} ||= {};
+	$dbh->{tables}{$table_name} = { filename => $filename, rows => [], col_names => [] };
 }
 
 package DBD::XMLSimple::st;
@@ -168,12 +169,18 @@ use Carp;
 
 sub open_table($$$$$)
 {
-	# my($self, $data, $tname, $createMode, $lockMode) = @_;
-	my($self, $data, $tname) = @_;
+	my ($self, $data, $tname) = @_;
 	my $dbh = $data->{Database};
 
+	# Determine the table name
+	$tname ||= (keys %{$dbh->{tables}})[0];   # fallback to first registered table
+	my $table_info = $dbh->{tables}{$tname}
+		or croak "No XML file registered for table '$tname'";
+
+	my $source = $table_info->{filename};
+
 	my $twig = XML::Twig->new();
-	my $source = $dbh->{filename};
+	
 	if(ref($source) eq 'ARRAY') {
 		$twig->parse(join('', @{$source}));
 	} else {
@@ -201,7 +208,11 @@ sub open_table($$$$$)
 	}
 
 	my @col_names = sort keys %colnames_seen;
-	my %col_nums  = map { $col_names[$_] => $_ } 0 .. $#col_names;
+	if (!@col_names) {
+		carp "Empty table, creating dummy column '_dummy'";
+		@col_names = ('_dummy');
+	}
+	my %col_nums = map { $col_names[$_] => $_ } 0..$#col_names;
 
 	# Second pass — save row values
 	for my $record (@records) {

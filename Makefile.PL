@@ -25,6 +25,7 @@ WriteMakefile(
       : ()),
     PL_FILES	=> {},
     TEST_REQUIRES => {
+    	'File::Temp' => 0,
 	'Test::Most' => 0,
 	'Test::Script' => 1.12,
 	'Test::DatabaseRow' => 0,
@@ -51,12 +52,13 @@ WriteMakefile(
 				web => 'https://github.com/nigelhorne/DBD-XMLSimple',
 				repository => 'https://github.com/nigelhorne/DBD-XMLSimple',
 			}, bugtracker => {
-				# web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBD-XMLSimple',
-				web => 'https://github.com/nigelhorne/DBD-XMLSimple/issues',
-				url => 'https://github.com/nigelhorne/DBD-XMLSimple/issues',
+				url => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBD-XMLSimple',
+				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBD-XMLSimple',
+				# web => 'https://github.com/nigelhorne/DBD-XMLSimple/issues',
+				# url => 'https://github.com/nigelhorne/DBD-XMLSimple/issues',
 				mailto => 'bug-DBD-XMLSimple@rt.cpan.org'
 			}
 		},
 	},
-    MIN_PERL_VERSION	=> '5.6.2'	# Probably would work, but never tested on earlier versions than this
+	MIN_PERL_VERSION	=> '5.6.2'	# Probably would work, but never tested on earlier versions than this
 );
