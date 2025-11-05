@@ -32,7 +32,7 @@ The XML file needs to have a <table> containing the entry/entries.
 
     $dbh->func('person', 'XML', "$Bin/../data/person.xml", 'xmlsimple_import');
 
-    my $sth = $dbh->prepare("SELECT * FROM person");
+    my $sth = $dbh->prepare('SELECT * FROM person');
 
 Input data will be something like this:
 
@@ -60,7 +60,7 @@ it will be concatenated.
 	</row>
     </table>
 
-    $sth = $dbh->prepare("Select email FROM person");
+    $sth = $dbh->prepare('Select email FROM person');
     $sth->execute();
     $sth->dump_results();
 
@@ -175,14 +175,14 @@ sub open_table($$$$$)
 	my $dbh = $data->{Database};
 
 	# Determine the table name
-	$tname ||= (keys %{$dbh->{tables}})[0];   # fallback to first registered table
+	$tname ||= (keys %{$dbh->{tables}})[0];	# fallback to first registered table
 	my $table_info = $dbh->{tables}{$tname}
 		or croak "No XML file registered for table '$tname'";
 
 	my $source = $table_info->{filename};
 
 	my $twig = XML::Twig->new();
-	
+
 	if(ref($source) eq 'ARRAY') {
 		$twig->parse(join('', @{$source}));
 	} else {
@@ -247,12 +247,12 @@ sub open_table($$$$$)
 	return DBD::XMLSimple::Table->new($data, $data);
 }
 
+# Table handle
 package DBD::XMLSimple::Table;
+use base qw(DBI::DBD::SqlEngine::Table);
 
 use strict;
 use warnings;
-
-@DBD::XMLSimple::Table::ISA = qw(DBI::DBD::SqlEngine::Table);
 
 sub new
 {
@@ -263,13 +263,12 @@ sub new
 	$attr->{cursor} = 0;
 
 	$attr->{rows} = $data->{rows};
-	$attr->{col_names}= $data->{col_names};
 	$attr->{col_nums} = $data->{col_nums};
 
 	my $rc = $class->SUPER::new($data, $attr, $flags);
 
 	$rc->{col_names} = $attr->{col_names};
-	$rc->{col_nums} = $attr->{col_nums};
+
 	return $rc;
 }
 
@@ -281,9 +280,8 @@ sub fetch_row($$)
 		return undef;
 	}
 
-	my $rowref = $self->{rows}->[$self->{cursor}++];
-	$self->{row} = $rowref;
-	return $rowref;
+	$self->{row} = $self->{rows}[ $self->{cursor}++ ];
+	return $self->{row};
 }
 
 sub seek($$$$)

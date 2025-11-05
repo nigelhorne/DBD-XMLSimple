@@ -32,8 +32,9 @@ WriteMakefile(
     }, TEST_REQUIRES => {
 	'Carp' => 0,
 	'File::Slurp' => 0,
-    	'File::Temp' => 0,
+	'File::Temp' => 0,
 	'POSIX' => 0,
+	'Readonly' => 0,
 	'Test::Most' => 0,
 	'Test::Script' => 1.12,
 	'Test::DatabaseRow' => 0,
