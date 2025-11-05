@@ -133,6 +133,7 @@ sub DESTROY
 package DBD::XMLSimple::db;
 
 use base qw(DBI::DBD::SqlEngine::db);
+use Carp;
 
 use vars qw($imp_data_size);
 
@@ -143,7 +144,7 @@ sub xmlsimple_import
 	# my($dbh, $table_name, $format, $filename, $flags) = @_;
 	my($dbh, $table_name, $format, $filename) = @_;
 
-	die if($format ne 'XML');
+	croak("Format must be 'XML'") unless $format eq 'XML';
 
 	# $dbh->{tables} ||= {};
 	$dbh->{tables}{$table_name} = { filename => $filename, rows => [], col_names => [] };
