@@ -1,6 +1,6 @@
 Revision history for DBD-XMLSimple
 
-0.08
+0.08	Wed Nov  5 14:23:38 EST 2025
 	Use Test::DescribeMe to simplify tests
 	Use Test::Needs
 	Use gtar to create a distribution on Macs
