@@ -9,6 +9,7 @@ MANIFEST
 MANIFEST.SKIP
 README
 README.md
+scripts/generate_index.pl
 t/00-load.t
 t/10-filedata.t
 t/20-stringdata.t
@@ -21,8 +22,6 @@ t/coverage.t
 t/critic.t
 t/cv.t
 t/dist.t
-t/duplicate.xml
-t/empty.xml
 t/eof.t
 t/eol.t
 t/gv.t
@@ -37,8 +36,6 @@ t/pod-synopsis.t
 t/pod.t
 t/port.t
 t/prereq.t
-t/second.xml
-t/simple.xml
 t/snippets.t
 t/strict.t
 t/unused.t

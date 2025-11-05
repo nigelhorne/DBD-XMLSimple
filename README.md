@@ -73,9 +73,16 @@ Nigel Horne, `<njh at nigelhorne.com>`
 
 # SEE ALSO
 
-[DBD::AnyData](https://metacpan.org/pod/DBD%3A%3AAnyData), which was also used as a template for this module.
+- Test coverage report: [https://nigelhorne.github.io/DBD-XMLSimple/coverage/](https://nigelhorne.github.io/DBD-XMLSimple/coverage/)
+- [DBD::AnyData](https://metacpan.org/pod/DBD%3A%3AAnyData), which was also used as a template for this module.
+
+# REPOSITORY
+
+[https://github.com/nigelhorne/DBD-XMLSimple](https://github.com/nigelhorne/DBD-XMLSimple)
 
 # SUPPORT
+
+This module is provided as-is without any warranty.
 
 You can find documentation for this module with the perldoc command.
 

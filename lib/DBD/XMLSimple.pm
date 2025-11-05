@@ -333,9 +333,21 @@ Nigel Horne, C<< <njh at nigelhorne.com> >>
 
 =head1 SEE ALSO
 
-L<DBD::AnyData>, which was also used as a template for this module.
+=over 4
+
+=item * Test coverage report: L<https://nigelhorne.github.io/DBD-XMLSimple/coverage/>
+
+=item * L<DBD::AnyData>, which was also used as a template for this module.
+
+=back
+
+=head1 REPOSITORY
+
+L<https://github.com/nigelhorne/DBD-XMLSimple>
 
 =head1 SUPPORT
+
+This module is provided as-is without any warranty.
 
 You can find documentation for this module with the perldoc command.
 
