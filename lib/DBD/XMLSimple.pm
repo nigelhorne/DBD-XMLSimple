@@ -167,8 +167,10 @@ use base qw(DBI::DBD::SqlEngine::Statement);
 
 use strict;
 use warnings;
-use XML::Twig;
+
+use Data::Reuse;
 use Carp;
+use XML::Twig;
 
 sub open_table($$$$$)
 {
@@ -238,7 +240,8 @@ sub open_table($$$$$)
 		push @rows, [ map { $row{$_} } @col_names ];
 	}
 
-	$data->{rows} = \@rows;
+	# $data->{rows} = \@rows;
+	$data->{rows} = Data::Reuse::reuse(\@rows);
 
 	# Store table metadata
 	$data->{col_names} = \@col_names;

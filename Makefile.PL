@@ -25,6 +25,7 @@ WriteMakefile(
       : ()),
     PL_FILES	=> {},
     PREREQ_PM => {
+	'Data::Reuse' => 0,
 	'XML::Twig' => 0,
 	'SQL::Statement' => 1.410,
 	'DBI::DBD::SqlEngine' => 0.06,
