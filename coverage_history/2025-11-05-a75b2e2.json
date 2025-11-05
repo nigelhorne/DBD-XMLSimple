@@ -1,0 +1,575 @@
+{
+   "runs" : [
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371061.7163,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371061.7159,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371061.88579,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371061.88548,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.06072,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.06034,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.23819,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.2378,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.41116,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.41087,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.58439,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.58405,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.75581,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.75553,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371062.92685,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371062.92659,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371063.1144,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371063.10586,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371072.94075,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371063.31989,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371063.46884,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "-e",
+         "start" : 1762371063.46869,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371063.84753,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/00-load.t",
+         "start" : 1762371063.84606,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371064.31253,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/10-filedata.t",
+         "start" : 1762371064.17894,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371064.79372,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/20-stringdata.t",
+         "start" : 1762371064.65066,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371065.0626,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/apoc.t",
+         "start" : 1762371065.06256,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371065.92525,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/bin.t",
+         "start" : 1762371065.34556,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371065.8249,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "bin/xml",
+         "start" : 1762371065.71477,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371066.21012,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/boiler.t",
+         "start" : 1762371066.19303,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371066.46322,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/changes.t",
+         "start" : 1762371066.46291,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371066.70737,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/comment-spelling.t",
+         "start" : 1762371066.70704,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371066.9727,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/coverage.t",
+         "start" : 1762371066.97178,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371067.22352,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/critic.t",
+         "start" : 1762371067.22321,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371067.49061,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/cv.t",
+         "start" : 1762371067.48976,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371067.74133,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/dist.t",
+         "start" : 1762371067.74102,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371067.98406,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/eof.t",
+         "start" : 1762371067.9837,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371068.22968,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/eol.t",
+         "start" : 1762371068.22937,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371068.49933,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/gv.t",
+         "start" : 1762371068.4985,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371068.77848,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/kwalitee.t",
+         "start" : 1762371068.77768,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371069.04286,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/metrics.t",
+         "start" : 1762371069.04203,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371069.29957,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/modules-used.t",
+         "start" : 1762371069.29925,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371069.56797,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/namespaces.t",
+         "start" : 1762371069.56719,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371069.81831,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/noplan.t",
+         "start" : 1762371069.81801,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371070.08953,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/pod-cm.t",
+         "start" : 1762371070.08858,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371070.36756,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/pod-spelling.t",
+         "start" : 1762371070.36677,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371070.62136,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/pod-synopsis.t",
+         "start" : 1762371070.62103,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371070.86364,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/pod.t",
+         "start" : 1762371070.86335,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371071.13604,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/port.t",
+         "start" : 1762371071.13571,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371071.41399,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/prereq.t",
+         "start" : 1762371071.41316,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371071.68258,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/snippets.t",
+         "start" : 1762371071.68174,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371071.93715,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/strict.t",
+         "start" : 1762371071.93685,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371072.18232,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/unused.t",
+         "start" : 1762371072.18199,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371072.42585,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/vars.t",
+         "start" : 1762371072.42553,
+         "version" : "0.08"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Access XML data via the DBI interface",
+         "dir" : "/home/runner/work/DBD-XMLSimple/DBD-XMLSimple",
+         "finish" : 1762371072.82346,
+         "name" : "DBD-XMLSimple",
+         "perl" : "5.40.3",
+         "run" : "t/xml.t",
+         "start" : 1762371072.71398,
+         "version" : "0.08"
+      }
+   ],
+   "summary" : {
+      "Total" : {
+         "branch" : {
+            "covered" : 19,
+            "error" : 9,
+            "percentage" : 67.8571428571429,
+            "total" : 28,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 2,
+            "error" : 3,
+            "percentage" : 40,
+            "total" : 5,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 169,
+            "error" : 5,
+            "percentage" : 97.1264367816092,
+            "total" : 174
+         },
+         "subroutine" : {
+            "covered" : 36,
+            "error" : 3,
+            "percentage" : 92.3076923076923,
+            "total" : 39
+         },
+         "total" : {
+            "covered" : 226,
+            "error" : 20,
+            "percentage" : 91.869918699187,
+            "total" : 246,
+            "uncoverable" : 0
+         }
+      },
+      "bin/xml" : {
+         "branch" : {
+            "covered" : 1,
+            "error" : 1,
+            "percentage" : 50,
+            "total" : 2,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 36,
+            "percentage" : 100,
+            "total" : 36
+         },
+         "subroutine" : {
+            "covered" : 7,
+            "percentage" : 100,
+            "total" : 7
+         },
+         "total" : {
+            "covered" : 44,
+            "error" : 1,
+            "percentage" : 97.7777777777778,
+            "total" : 45,
+            "uncoverable" : 0
+         }
+      },
+      "blib/lib/DBD/XMLSimple.pm" : {
+         "branch" : {
+            "covered" : 18,
+            "error" : 8,
+            "percentage" : 69.2307692307692,
+            "total" : 26,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 2,
+            "error" : 3,
+            "percentage" : 40,
+            "total" : 5,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 133,
+            "error" : 5,
+            "percentage" : 96.3768115942029,
+            "total" : 138
+         },
+         "subroutine" : {
+            "covered" : 29,
+            "error" : 3,
+            "percentage" : 90.625,
+            "total" : 32
+         },
+         "total" : {
+            "covered" : 182,
+            "error" : 19,
+            "percentage" : 90.547263681592,
+            "total" : 201,
+            "uncoverable" : 0
+         }
+      }
+   }
+}
