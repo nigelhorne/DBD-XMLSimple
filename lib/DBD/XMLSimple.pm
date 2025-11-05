@@ -100,10 +100,9 @@ sub driver
 	});
 
 	if($drh) {
-		unless($methods_already_installed++) {
-			# DBI->setup_driver(__PACKAGE__);
-			DBD::XMLSimple::db->install_method('xmlsimple_import');
-		}
+		$class .= '::db';
+		# DBI->setup_driver($class);
+		$class->install_method('xmlsimple_import') unless $drh->{methods_installed}++;
 	}
 
 	return $drh;
