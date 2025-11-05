@@ -24,8 +24,16 @@ WriteMakefile(
       ? ('LICENSE'=> 'GPL')
       : ()),
     PL_FILES	=> {},
-    TEST_REQUIRES => {
+    PREREQ_PM => {
+	'XML::Twig' => 0,
+	'SQL::Statement' => 1.410,
+	'DBI::DBD::SqlEngine' => 0.06,
+	DBI => 1.643	# Version that understands XMLSimple import
+    }, TEST_REQUIRES => {
+	'Carp' => 0,
+	'File::Slurp' => 0,
     	'File::Temp' => 0,
+	'POSIX' => 0,
 	'Test::Most' => 0,
 	'Test::Script' => 1.12,
 	'Test::DatabaseRow' => 0,
@@ -35,12 +43,6 @@ WriteMakefile(
 	'Test::Needs' => 0,
 	'autodie' => 0,
 	'IPC::System::Simple' => 0,
-    }, PREREQ_PM => {
-	'XML::Twig' => 0,
-	'SQL::Statement' => 1.410,
-	'DBI::DBD::SqlEngine' => 0.06,
-	DBI => 1.643,	# Version that understands XMLSimple import
-	Carp => 0
     }, dist => $dist,
     clean		=> { FILES => 'DBD::XMLSimple-*' },
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec

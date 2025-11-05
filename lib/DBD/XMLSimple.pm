@@ -129,12 +129,14 @@ sub DESTROY
 	shift->{tables} = {};
 }
 
+# Database handle
 package DBD::XMLSimple::db;
+
+use base qw(DBI::DBD::SqlEngine::db);
 
 use vars qw($imp_data_size);
 
 $DBD::XMLSimple::db::imp_data_size = 0;
-@DBD::XMLSimple::db::ISA = qw(DBI::DBD::SqlEngine::db);
 
 sub xmlsimple_import
 {
@@ -152,19 +154,20 @@ package DBD::XMLSimple::st;
 use strict;
 use warnings;
 
+use base qw(DBI::DBD::SqlEngine::st);
+
 use vars qw($imp_data_size);
 
 $DBD::XMLSimple::st::imp_data_size = 0;
-@DBD::XMLSimple::st::ISA = qw(DBI::DBD::SqlEngine::st);
 
+# Statement handle
 package DBD::XMLSimple::Statement;
+use base qw(DBI::DBD::SqlEngine::Statement);
 
 use strict;
 use warnings;
 use XML::Twig;
 use Carp;
-
-@DBD::XMLSimple::Statement::ISA = qw(DBI::DBD::SqlEngine::Statement);
 
 sub open_table($$$$$)
 {
@@ -197,8 +200,7 @@ sub open_table($$$$$)
 	# First pass — discover columns across all rows
 	for my $record (@records) {
 		for my $leaf ($record->children) {
-			my $name = $leaf->name;
-			$colnames_seen{$name}++;
+			$colnames_seen{$leaf->name()}++;
 		}
 		# Also include 'id'
 		if (defined(my $id = $record->att('id'))) {
@@ -215,30 +217,31 @@ sub open_table($$$$$)
 
 	# Second pass — save row values
 	for my $record (@records) {
-		my %rowhash;
+		my %row;
 
 		# Include id if present
 		if (defined(my $id = $record->att('id'))) {
-			$rowhash{id} = $id;
+			$row{id} = $id;
 		}
 
 		for my $leaf ($record->children) {
 			my $key = $leaf->name;
-			if (defined $rowhash{$key}) {
-				$rowhash{$key} .= "," . $leaf->field();
+			if (defined $row{$key}) {
+				$row{$key} .= ',' . $leaf->field();
 			} else {
-				$rowhash{$key} = $leaf->field();
+				$row{$key} = $leaf->field();
 			}
 		}
 
 		# Now produce array in canonical column order
-		my @row = map { $rowhash{$_} } @col_names;
-		push @rows, \@row;
+		push @rows, [ map { $row{$_} } @col_names ];
 	}
 
+	$data->{rows} = \@rows;
+
+	# Store table metadata
 	$data->{col_names} = \@col_names;
 	$data->{col_nums}  = \%col_nums;
-	$data->{rows} = \@rows;
 	$data->{row_count} = scalar @rows;
 
 	return DBD::XMLSimple::Table->new($data, $data);
