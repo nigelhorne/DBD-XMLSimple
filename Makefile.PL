@@ -16,7 +16,7 @@ if($^O eq 'darwin') {
 
 WriteMakefile(
     NAME		=> 'DBD::XMLSimple',
-    AUTHOR		=> q{Nigel Horne <njh@bandsman.co.uk>},
+    AUTHOR		=> q{Nigel Horne <njh@nigelhorne.com>},
     VERSION_FROM	=> 'lib/DBD/XMLSimple.pm',
     ABSTRACT_FROM       => 'lib/DBD/XMLSimple.pm',
     ((defined($ExtUtils::MakeMaker::VERSION) &&

@@ -40,7 +40,7 @@ Input data will be something like this:
     <table>
 	<row id="1">
 	    <name>Nigel Horne</name>
-	    <email>njh@bandsman.co.uk</email>
+	    <email>njh@nigelhorne.com</email>
 	</row>
 	<row id="2">
 	    <name>A N Other</name>
@@ -54,7 +54,7 @@ If a leaf appears twice it will be concatenated
     <table>
 	<row id="1">
 	    <name>Nigel Horne</name>
-	    <email>njh@bandsman.co.uk</email>
+	    <email>njh@nigelhorne.com</email>
 	    <email>nhorne@pause.org</email>
 	</row>
     </table>
@@ -63,7 +63,7 @@ If a leaf appears twice it will be concatenated
     $sth->execute();
     $sth->dump_results();
 
-    Gives the output "njh@bandsman.co.uk,nhorne@pause.org"
+    Gives the output "njh@nigelhorne.com,nhorne@pause.org"
 =cut
 
 =head1 SUBROUTINES/METHODS
@@ -292,7 +292,7 @@ sub get_table_meta($$$$;$)
 
 =head1 AUTHOR
 
-Nigel Horne, C<< <njh at bandsman.co.uk> >>
+Nigel Horne, C<< <njh at nigelhorne.com> >>
 
 =head1 BUGS
 
