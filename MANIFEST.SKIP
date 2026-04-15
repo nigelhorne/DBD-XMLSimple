@@ -43,7 +43,7 @@
 \.tmp$
 \.#
 \.rej$
-\.yml$
+schemas\.yml$
 \.swp$
 
 # Avoid OS-specific files/dirs
@@ -68,3 +68,4 @@
 \.lwpcookies
 DBD-.*
 .test-script-*
+typescript

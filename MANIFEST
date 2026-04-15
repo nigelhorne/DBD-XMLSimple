@@ -1,5 +1,6 @@
 bin/xml
 Changes
+cpanfile
 data/person.xml
 ignore.txt
 lib/DBD/XMLSimple.pm

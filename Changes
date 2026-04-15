@@ -1,6 +1,6 @@
 Revision history for DBD-XMLSimple
 
-0;09
+0.09
 	Croak on XML parsing error
 	Use Data::Reuse
 
